@@ -1,0 +1,522 @@
+/* =========================================
+   PALETA DE CORES (TONS DE VERDE)
+   ========================================= */
+:root {
+    --verde-escuro: #0c4a2e;
+    --verde-medio: #156e45;
+    --verde-destaque: #9ce62a;
+    --verde-destaque-hover: #86cc1e;
+    --texto-claro: #ffffff;
+    --texto-escuro: #1e293b;
+    --fundo-menu: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background-color: var(--verde-escuro);
+    color: var(--texto-claro);
+    overflow-x: hidden;
+}
+
+/* =========================================
+   CABEÇALHO E LOGO MAIOR
+   ========================================= */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--fundo-menu);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.navbar {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0.85rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+/* Ajuste do tamanho do logo e texto ao lado */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espaço entre a imagem do logo e o texto */
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.logo-container img {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.logo-fallback {
+    height: 65px;
+    padding: 0 16px;
+    background: #f0fdf4;
+    border: 2px dashed var(--verde-medio);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    color: var(--verde-escuro);
+    font-weight: 800;
+    font-size: 0.95rem;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.logo-subtitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--verde-medio);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.logo-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--verde-escuro);
+    letter-spacing: -0.5px;
+}
+
+/* Links do Menu */
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--texto-escuro);
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0.5rem 0;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--verde-medio);
+}
+
+/* Submenu (Dropdown) */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 210px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 0.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.25s ease;
+    list-style: none;
+    border: 1px solid #f1f5f9;
+}
+
+.nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.65rem 1rem;
+    color: var(--texto-escuro);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 8px;
+}
+
+.dropdown-menu a:hover {
+    background: #f0fdf4;
+    color: var(--verde-escuro);
+}
+
+/* =========================================
+   BARRA DE PESQUISA
+   ========================================= */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #f1f5f9;
+    border-radius: 50px;
+    padding: 0.45rem 1rem;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+    background: #ffffff;
+    border-color: var(--verde-medio);
+    box-shadow: 0 0 0 3px rgba(21, 110, 69, 0.15);
+}
+
+.search-input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 0.9rem;
+    color: var(--texto-escuro);
+    width: 150px;
+    transition: width 0.3s ease;
+}
+
+.search-input:focus {
+    width: 200px;
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--texto-escuro);
+    display: flex;
+    align-items: center;
+}
+
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--texto-escuro);
+}
+
+/* =========================================
+   CARROSSEL DE 4 IMAGENS COM TEXTO FLUTUANDO
+   ========================================= */
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 640px;
+    background-color: var(--verde-escuro);
+    overflow: hidden;
+}
+
+/* Cada slide ocupa 100% da tela e fica sobreposto */
+.carousel-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    z-index: 1;
+}
+
+/* Slide ativo fica visível */
+.carousel-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+/* Máscara verde escura sobre a foto para leitura perfeita do texto branco */
+.slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(10, 56, 35, 0.88) 0%,
+        rgba(12, 74, 46, 0.65) 55%,
+        rgba(12, 74, 46, 0.35) 100%
+    );
+    z-index: 1;
+}
+
+/* Container dos textos flutuando sobre a imagem */
+.slide-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1320px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 5rem;
+    color: #ffffff;
+}
+
+.badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.45rem 1.1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.badge-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--verde-destaque);
+    border-radius: 50%;
+}
+
+.hero-title {
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.12;
+    max-width: 680px;
+    margin-bottom: 1.25rem;
+    color: #ffffff;
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+.hero-title span {
+    color: var(--verde-destaque);
+}
+
+.hero-desc {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #f1f5f9;
+    max-width: 580px;
+    margin-bottom: 2.2rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.btn-primary {
+    background-color: var(--verde-destaque);
+    color: var(--verde-escuro);
+    padding: 0.95rem 1.85rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--verde-destaque-hover);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(6px);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 0.95rem 1.85rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.24);
+}
+
+/* Setas Laterais */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    transition: all 0.2s;
+    z-index: 10;
+    font-size: 1.1rem;
+}
+
+.carousel-arrow:hover {
+    background: var(--verde-destaque);
+    color: var(--verde-escuro);
+    border-color: var(--verde-destaque);
+}
+
+.prev-btn { left: 1.5rem; }
+.next-btn { right: 1.5rem; }
+
+/* Bolinhas Indicadoras */
+.carousel-dots {
+    position: absolute;
+    bottom: 1.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.65rem;
+    z-index: 10;
+}
+
+.dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    width: 32px;
+    background: var(--verde-destaque);
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 1024px) {
+    .mobile-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem;
+        gap: 0.75rem;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.12);
+        display: none;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        padding-left: 1rem;
+        background: #f8fafc;
+        margin-top: 0.4rem;
+    }
+
+    .slide-content {
+        padding: 0 4rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .logo-container {
+        gap: 8px;
+    }
+
+    .logo-container img {
+        height: 52px;
+    }
+
+    .logo-subtitle {
+        font-size: 0.7rem;
+    }
+
+    .logo-title {
+        font-size: 1.15rem;
+    }
+
+    .search-input {
+        width: 95px;
+    }
+
+    .search-input:focus {
+        width: 120px;
+    }
+
+    .hero-carousel {
+        height: 580px;
+    }
+
+    .slide-content {
+        padding: 0 1.5rem;
+        text-align: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .carousel-arrow {
+        width: 38px;
+        height: 38px;
+        top: auto;
+        bottom: 1.2rem;
+        transform: none;
+    }
+
+    .prev-btn { left: 1rem; }
+    .next-btn { right: 1rem; }
+}
