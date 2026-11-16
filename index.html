@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Public+Sans:wght@400;500&display=swap" rel="stylesheet">
     <script src="app.js"></script>
     <link rel="icon" type="image/png" href="img/favico-transp.jpg">
     <title>EcoAmparo</title>
@@ -145,7 +148,55 @@
         </div>
 
     </section>
+        <!-- SECAO QUEM SOMOS -->
+    <section class="qs" id="quem-somos" aria-labelledby="qs-titulo">
+        <div class="qs__conteudo">
 
+            <div class="qs__topo">
+                <div>
+                    <h2 class="qs__titulo" id="qs-titulo">Catadores organizados, cidade mais limpa</h2>
+                    <p class="qs__texto">
+                    Somos uma cooperativa de trabalhadores da reciclagem. Coletamos, separamos e
+                    encaminhamos materiais para uma nova vida, gerando renda justa para as famílias
+                    cooperadas e menos lixo nas ruas.
+                    </p>
+                    <a class="qs__botao" href="nossa-historia.html">Conheça nossa história</a>
+                </div>
+
+                <figure class="qs__foto">
+                    <!-- Troque pela foto real dos cooperados -->
+                    <img
+                    src="imagens/cooperados.jpg"
+                    alt="Cooperados separando materiais recicláveis no galpão da cooperativa"
+                    loading="lazy"
+                    onerror="this.style.display='none'">
+                </figure>
+            </div>
+
+            <!-- Os números já estão escritos no HTML (funciona sem JavaScript).
+                O script apenas anima a contagem quando a seção aparece na tela. -->
+            <ul class="qs__numeros">
+            <li>
+                <strong class="qs__valor" data-alvo="120" data-prefixo="+" data-sufixo=" t">+120 t</strong>
+                <span class="qs__legenda">recicladas por mês</span>
+            </li>
+            <li>
+                <strong class="qs__valor" data-alvo="45">45</strong>
+                <span class="qs__legenda">cooperados</span>
+            </li>
+            <li>
+                <strong class="qs__valor" data-alvo="8000">8.000</strong>
+                <span class="qs__legenda">famílias atendidas</span>
+            </li>
+            <li>
+                <strong class="qs__valor" data-alvo="12" data-sufixo=" anos">12 anos</strong>
+                <span class="qs__legenda">de atuação</span>
+            </li>
+            </ul>
+
+        </div>
+    </section>
+    
     <script src="script.js"></script>
 </body>
 </html>

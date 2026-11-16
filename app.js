@@ -79,3 +79,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+// SECAO QUEM SOMOS
+
+  (function () {
+    var valores = document.querySelectorAll(".qs__valor");
+    if (!valores.length) return;
+
+    var reduzirMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduzirMovimento || !("IntersectionObserver" in window)) return;
+
+    function formatar(el, numero) {
+      var prefixo = el.dataset.prefixo || "";
+      var sufixo = el.dataset.sufixo || "";
+      el.textContent = prefixo + Math.round(numero).toLocaleString("pt-BR") + sufixo;
+    }
+
+    function animar(el) {
+      var alvo = Number(el.dataset.alvo);
+      var duracao = 1600;
+      var inicio = null;
+
+      function passo(agora) {
+        if (inicio === null) inicio = agora;
+        var progresso = Math.min((agora - inicio) / duracao, 1);
+        var suave = 1 - Math.pow(1 - progresso, 3);
+        formatar(el, alvo * suave);
+        if (progresso < 1) requestAnimationFrame(passo);
+      }
+
+      formatar(el, 0);
+      requestAnimationFrame(passo);
+    }
+
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (entrada.isIntersecting) {
+          animar(entrada.target);
+          observador.unobserve(entrada.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    valores.forEach(function (el) { observador.observe(el); });
+  })();
