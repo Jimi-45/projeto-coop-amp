@@ -708,6 +708,165 @@ header {
     font-weight: 500;
 }
 
+/*------------Saiba mais-------------*/
+
+.saiba-mais {
+    background: var(--verde-medio);
+    padding: 4rem 1.25rem 4.5rem;
+}
+
+.saiba-mais__container {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.saiba-mais h2 {
+    text-align: center;
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    font-weight: 800;
+    color: var(--texto-claro);
+    margin-bottom: .5rem;
+}
+
+.saiba-mais h2::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 4px;
+    margin: .8rem auto 0;
+    border-radius: 4px;
+    background: var(--verde-destaque);
+}
+
+.saiba-mais__intro {
+    text-align: center;
+    margin: 1rem 0 2.2rem;
+    color: var(--texto-claro);
+    opacity: .9;
+}
+
+/* ---------- Item (acordeão) ---------- */
+.sm-item {
+    background: var(--fundo-menu);
+    color: var(--texto-escuro);
+    border-radius: 14px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .18);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.sm-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .25);
+}
+
+.sm-item summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    padding: 1.1rem 1.25rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--verde-escuro);
+    transition: background .3s ease, color .3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.sm-item summary::-webkit-details-marker { display: none; }
+
+.sm-icone {
+    flex-shrink: 0;
+    font-size: 1.5rem;
+}
+
+.sm-titulo { flex: 1; }
+
+/* seta que gira */
+.sm-item summary::after {
+    content: "";
+    flex-shrink: 0;
+    width: 10px;
+    height: 10px;
+    border-right: 3px solid currentColor;
+    border-bottom: 3px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform .3s ease;
+    margin-right: .25rem;
+}
+
+.sm-item[open] summary {
+    background: var(--verde-escuro);
+    color: var(--verde-destaque);
+}
+
+.sm-item[open] summary::after {
+    transform: rotate(-135deg);
+}
+
+.sm-conteudo {
+    padding: 1.25rem 1.4rem 1.5rem;
+    line-height: 1.65;
+}
+
+/* conteúdo aparece suavemente ao abrir */
+.sm-item[open] .sm-conteudo {
+    animation: sm-aparecer .4s ease .05s both;
+}
+
+@keyframes sm-aparecer {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.sm-conteudo p + p,
+.sm-conteudo ul,
+.sm-conteudo ol { margin-top: .75rem; }
+
+.sm-conteudo ul,
+.sm-conteudo ol { padding-left: 1.3rem; }
+
+.sm-conteudo li { margin-bottom: .45rem; }
+.sm-conteudo li::marker { color: var(--verde-medio); font-weight: 700; }
+
+.sm-botao {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: .75rem 1.8rem;
+    background: var(--verde-destaque);
+    color: var(--verde-escuro);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: background .25s ease, transform .25s ease;
+}
+
+.sm-botao:hover {
+    background: var(--verde-destaque-hover);
+    transform: scale(1.05);
+}
+
+/* ---------- Entrada ao rolar a página ---------- */
+.js .saiba-mais h2,
+.js .saiba-mais__intro,
+.js .sm-item {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .6s ease, transform .6s ease, box-shadow .25s ease;
+}
+
+.js .saiba-mais .visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.js .sm-item.visivel:hover {
+    transform: translateY(-3px);
+}
+
+
 
 /* =========================================
    RESPONSIVIDADE
@@ -828,5 +987,19 @@ header {
         grid-row: span 2;
         padding: 2.25rem;
     }
+}
+
+/* ---------- Quem prefere menos movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .js .saiba-mais h2,
+    .js .saiba-mais__intro,
+    .js .sm-item {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    .sm-item[open] .sm-conteudo { animation: none; }
+    .sm-item,
+    .sm-item summary::after { transition: none; }
 }
 

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Public+Sans:wght@400;500&display=swap" rel="stylesheet">
-    <script src="app.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+    <script src="app.js" defer></script>
     <link rel="icon" type="image/png" href="img/favico-transp.jpg">
     <title>EcoAmparo</title>
 </head>
@@ -166,7 +167,7 @@
                 <figure class="qs__foto">
                     <!-- Troque pela foto real dos cooperados -->
                     <img
-                    src="imagens/cooperados.jpg"
+                    src="img/Catadores.png"
                     alt="Cooperados separando materiais recicláveis no galpão da cooperativa"
                     loading="lazy"
                     onerror="this.style.display='none'">
@@ -266,7 +267,73 @@
             </ul>
         </div>
     </section>
-    
-    <script src="app.js"></script>
+    <!-- SECAO SERVICOS -->
+    <section id="saiba-mais" class="saiba-mais">
+        <div class="saiba-mais__container">
+            <h2>Saiba mais</h2>
+            <p class="saiba-mais__intro">Toque em um assunto para ver como fazer.</p>
+
+            <details class="sm-item">
+            <summary>
+                <span class="sm-icone">♻️</span>
+                <span class="sm-titulo">Coleta, recebimento e triagem</span>
+            </summary>
+            <div class="sm-conteudo">
+                <p>Coletamos e triamos uma variedade de materiais recicláveis, abrangendo todos os itens da coleta seletiva. Você pode:</p>
+                <ul>
+                <li>Entregar ao caminhão da coleta seletiva;</li>
+                <li>Agendar uma coleta;</li>
+                <li>Trazer diretamente para a nossa cooperativa.</li>
+                </ul>
+                <p>Além disso, oferecemos serviços de separação e coleta em eventos.</p>
+                <a href="#contato" class="sm-botao">Agendar</a>
+            </div>
+            </details>
+
+            <details class="sm-item">
+            <summary>
+                <span class="sm-icone">🛢️</span>
+                <span class="sm-titulo">Como reciclar óleo de cozinha usado</span>
+            </summary>
+            <div class="sm-conteudo">
+                <p>Transformamos óleo de cozinha usado em novos produtos, evitando a contaminação da água e do solo.</p>
+                <ol>
+                <li>Depois de utilizar o óleo de cozinha, deixe-o esfriar;</li>
+                <li>Com a ajuda de um funil, despeje o óleo frio em uma garrafa PET e tampe bem;</li>
+                <li>Limpe os recipientes com papel absorvente e descarte no resíduo úmido;</li>
+                <li>Coloque a garrafa PET junto com o resíduo seco (reciclável) e entregue ao caminhão da coleta seletiva, ou traga direto à cooperativa.</li>
+                </ol>
+            </div>
+            </details>
+
+            <details class="sm-item">
+            <summary>
+                <span class="sm-icone">🎓</span>
+                <span class="sm-titulo">Oficina de reciclagem</span>
+            </summary>
+            <div class="sm-conteudo">
+                <p>Oferecemos oficinas educativas sobre reciclagem e sustentabilidade para escolas, empresas e comunidade. Aprenda na prática!</p>
+                <a href="#contato" class="sm-botao">Quero participar</a>
+            </div>
+            </details>
+
+            <details class="sm-item">
+            <summary>
+                <span class="sm-icone">🔋</span>
+                <span class="sm-titulo">Ecoponto da Prefeitura de Amparo</span>
+            </summary>
+            <div class="sm-conteudo">
+                <p>A Cooperativa Eco Amparo é um <strong>ecoponto da Prefeitura de Amparo</strong>, autorizado para o recebimento de materiais especiais que necessitam de descarte adequado:</p>
+                <ul>
+                <li>Lâmpadas;</li>
+                <li>Pneus;</li>
+                <li>Pilhas e baterias;</li>
+                <li>Lixo eletrônico: monitores, computadores, notebooks, celulares, peças, periféricos, televisões e caixas de som.</li>
+                </ul>
+                <p>Assim garantimos o processamento correto e minimizamos o impacto ambiental.</p>
+            </div>
+            </details>
+        </div>
+    </section>
 </body>
 </html>

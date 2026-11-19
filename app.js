@@ -123,3 +123,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
     valores.forEach(function (el) { observador.observe(el); });
   })();
+
+// SEÇÃO SAIBA MAIS
+
+/* 1) Abrir e fechar com animação suave */
+(function () {
+    var reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.querySelectorAll('.sm-item').forEach(function (item) {
+        var resumo = item.querySelector('summary');
+        var conteudo = item.querySelector('.sm-conteudo');
+        var animacao = null;
+
+        function terminar(abrir) {
+            item.open = abrir;
+            item.style.height = '';
+            item.style.overflow = '';
+            animacao = null;
+        }
+
+        resumo.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (reduzir) { item.open = !item.open; return; }
+            if (animacao) animacao.cancel();
+
+            var alturaInicial = item.offsetHeight;
+            var abrir = !item.open;
+            item.style.overflow = 'hidden';
+
+            if (abrir) item.open = true;
+
+            var alturaFinal = abrir
+                ? resumo.offsetHeight + conteudo.offsetHeight
+                : resumo.offsetHeight;
+
+            animacao = item.animate(
+                { height: [alturaInicial + 'px', alturaFinal + 'px'] },
+                { duration: 350, easing: 'ease-in-out' }
+            );
+            animacao.onfinish = function () { terminar(abrir); };
+            animacao.oncancel = function () { animacao = null; };
+        });
+    });
+})();
+
+/* 2) Entrada dos elementos ao rolar a página */
+(function () {
+    var alvos = document.querySelectorAll('.saiba-mais h2, .saiba-mais__intro, .sm-item');
+    if (!('IntersectionObserver' in window)) {
+        alvos.forEach(function (el) { el.classList.add('visivel'); });
+        return;
+    }
+    var obs = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (entrada) {
+            if (entrada.isIntersecting) {
+                entrada.target.classList.add('visivel');
+                obs.unobserve(entrada.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    alvos.forEach(function (el, i) {
+        el.style.transitionDelay = (i * 0.08) + 's';
+        obs.observe(el);
+    });
+})();
