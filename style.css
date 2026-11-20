@@ -1040,6 +1040,122 @@ header {
     transform: scale(1.08);
 }
 
+/* ===== FOOTER ===== */
+.rodape {
+    background: var(--verde-escuro);
+    color: var(--texto-claro);
+    padding: 70px 20px 0;
+    border-top: 5px solid var(--verde-destaque);
+}
+
+.rodape__container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.2fr;
+    gap: 40px;
+}
+
+.rodape__marca h3 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 14px;
+}
+
+.rodape__marca h3 span { color: var(--verde-destaque); }
+
+.rodape__marca p {
+    line-height: 1.7;
+    color: rgba(241, 245, 249, 0.8);
+    max-width: 340px;
+}
+
+.rodape h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.rodape h4::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 36px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--verde-destaque);
+}
+
+.rodape ul { list-style: none; }
+.rodape li { margin-bottom: 11px; }
+
+.rodape a {
+    color: rgba(241, 245, 249, 0.85);
+    text-decoration: none;
+    transition: color .25s ease, padding-left .25s ease;
+}
+
+.rodape ul a:hover {
+    color: var(--verde-destaque);
+    padding-left: 6px;
+}
+
+.rodape__contato li {
+    display: flex;
+    gap: 10px;
+    line-height: 1.5;
+    color: rgba(241, 245, 249, 0.85);
+}
+
+.rodape__contato a:hover { color: var(--verde-destaque); }
+
+/* Redes sociais */
+.rodape__redes {
+    display: flex;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.rodape__redes a {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .25s ease, transform .25s ease;
+}
+
+.rodape__redes a:hover {
+    background: var(--verde-destaque);
+    transform: translateY(-4px);
+}
+
+.rodape__redes svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    transition: fill .25s ease;
+}
+
+.rodape__redes a:hover svg { fill: var(--verde-escuro); }
+
+/* Linha de direitos */
+.rodape__copy {
+    max-width: 1100px;
+    margin: 50px auto 0;
+    padding: 22px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    font-size: .9rem;
+    color: rgba(241, 245, 249, 0.7);
+}
+
+
 /* =========================================
    RESPONSIVIDADE
    ========================================= */
@@ -1147,6 +1263,47 @@ header {
     .prev-btn { left: 1rem; }
     .next-btn { right: 1rem; }
 }
+
+@media (max-width: 900px) {
+  .compromisso__container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .compromisso__logo-card {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .compromisso__titulo {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+    .parceiros { padding: 60px 16px; }
+    .parceiros__grade { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .parceiro-card { height: 130px; padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .parceiro-card { opacity: 1; transform: none; transition: none; }
+}
+
+@media (max-width: 800px) {
+    .rodape { padding-top: 50px; }
+    .rodape__container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 34px;
+    }
+    .rodape__marca p { margin: 0 auto; }
+    .rodape h4::after { left: 50%; transform: translateX(-50%); }
+    .rodape__contato li { justify-content: center; }
+    .rodape__redes { justify-content: center; }
+    .rodape ul a:hover { padding-left: 0; }
+}
+
 /* ---------- Telas maiores ---------- */
 @media (min-width: 800px) {
     .sv__lista {
@@ -1175,30 +1332,5 @@ header {
     .sm-item summary::after { transition: none; }
 }
 
-@media (max-width: 900px) {
-  .compromisso__container {
-    grid-template-columns: 1fr;
-    gap: 50px;
-  }
-
-  .compromisso__logo-card {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  .compromisso__titulo {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 600px) {
-    .parceiros { padding: 60px 16px; }
-    .parceiros__grade { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .parceiro-card { height: 130px; padding: 14px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .parceiro-card { opacity: 1; transform: none; transition: none; }
-}
 
 

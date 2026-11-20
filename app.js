@@ -205,3 +205,7 @@ const observador = new IntersectionObserver((entradas) => {
 }, { threshold: 0.2 });
 cards.forEach(card => observador.observe(card));
 
+//FOOTER
+
+// Atualiza o ano automaticamente
+    document.getElementById('ano').textContent = new Date().getFullYear();
