@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nossa História | EcoAmparo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --verde-escuro: #0c4a2e;
+      --verde-medio: #156e45;
+      --verde-destaque: #9ce62a;
+      --verde-destaque-hover: #86cc1e;
+      --texto-claro: #f4f8f2;
+      --texto-escuro: #1e293b;
+      --fundo-pagina: #f6f4ec;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--texto-escuro);
+      background: var(--fundo-pagina);
+      line-height: 1.7;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--verde-destaque);
+      outline-offset: 3px;
+    }
+
+    /* ===== Barra superior (troque pelo seu header/menu se preferir) ===== */
+    .topo {
+      background: var(--verde-escuro);
+      padding: 16px 24px;
+    }
+    .topo-interno {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .topo a.logo {
+      color: var(--texto-claro);
+      font-weight: 800;
+      font-size: 1.25rem;
+      text-decoration: none;
+    }
+    .topo a.voltar {
+      color: var(--verde-destaque);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .topo a.voltar:hover { color: var(--texto-claro); }
+
+    /* ===== Título da página ===== */
+    .abertura {
+      background: var(--verde-escuro);
+      color: var(--texto-claro);
+      padding: 56px 24px 72px;
+    }
+    .abertura-interno {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .abertura h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+    }
+    .abertura p {
+      margin-top: 12px;
+      max-width: 52ch;
+      opacity: .9;
+    }
+    .abertura .barra {
+      width: 72px;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--verde-destaque);
+      margin-top: 24px;
+    }
+
+    /* ===== Linha do tempo ===== */
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 56px 24px 72px;
+    }
+
+    .linha-tempo {
+      position: relative;
+      padding-left: 48px;
+    }
+    .linha-tempo::before {
+      content: "";
+      position: absolute;
+      left: 11px;
+      top: 8px;
+      bottom: 8px;
+      width: 4px;
+      border-radius: 2px;
+      background: var(--verde-medio);
+      opacity: .35;
+    }
+
+    .periodo {
+      position: relative;
+      margin-bottom: 56px;
+    }
+    .periodo:last-child { margin-bottom: 0; }
+
+    .periodo::before {
+      content: "";
+      position: absolute;
+      left: -48px;
+      top: 6px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--verde-destaque);
+      border: 6px solid var(--verde-escuro);
+    }
+
+    .periodo .ano {
+      display: inline-block;
+      background: var(--verde-escuro);
+      color: var(--verde-destaque);
+      font-weight: 800;
+      font-size: .95rem;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .periodo h2 {
+      color: var(--verde-escuro);
+      font-size: clamp(1.35rem, 2.8vw, 1.8rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+
+    .periodo p { max-width: 72ch; }
+    .periodo p + p { margin-top: 16px; }
+
+    /* ===== Figuras (espaço para as imagens) ===== */
+    figure.figura {
+      margin: 28px 0;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(12, 74, 46, .10);
+      max-width: 720px;
+    }
+    figure.figura img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #dfe9dc; /* aparece enquanto a imagem não existe */
+    }
+    figure.figura figcaption {
+      padding: 12px 18px;
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--verde-escuro);
+      border-top: 4px solid var(--verde-destaque);
+    }
+
+    /* ===== Resultados (listas) ===== */
+    .resultados {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin: 20px 0;
+      max-width: 72ch;
+    }
+    .resultados li {
+      background: #fff;
+      border-left: 6px solid var(--verde-medio);
+      border-radius: 10px;
+      padding: 14px 18px;
+      box-shadow: 0 4px 14px rgba(12, 74, 46, .07);
+    }
+    .resultados li strong { color: var(--verde-escuro); }
+
+    .etapas {
+      margin: 20px 0 0 22px;
+      max-width: 70ch;
+    }
+    .etapas li { padding-left: 6px; margin-bottom: 8px; }
+    .etapas li::marker { color: var(--verde-medio); font-weight: 800; }
+
+    /* ===== Destaque final ===== */
+    .periodo.atual .conteudo-atual {
+      background: var(--verde-medio);
+      color: var(--texto-claro);
+      border-radius: 20px;
+      padding: clamp(24px, 4vw, 40px);
+    }
+    .periodo.atual h2 { color: var(--verde-destaque); }
+    .periodo.atual figure.figura { margin-top: 24px; }
+
+    /* ===== Botão ===== */
+    .acao { margin-top: 56px; text-align: center; }
+    .botao {
+      display: inline-block;
+      background: var(--verde-destaque);
+      color: var(--verde-escuro);
+      font-weight: 700;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 999px;
+      transition: background .2s, transform .2s;
+    }
+    .botao:hover { background: var(--verde-destaque-hover); transform: translateY(-2px); }
+
+    /* ===== Rodapé simples (use o seu footer.html no lugar) ===== */
+    .rodape {
+      background: var(--verde-escuro);
+      color: var(--texto-claro);
+      text-align: center;
+      padding: 24px;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 600px) {
+      .linha-tempo { padding-left: 36px; }
+      .linha-tempo::before { left: 5px; }
+      .periodo::before { left: -36px; width: 22px; height: 22px; border-width: 5px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topo">
+    <div class="topo-interno">
+      <a class="logo" href="index.html">EcoAmparo</a>
+      <a class="voltar" href="index.html">&larr; Voltar à página inicial</a>
+    </div>
+  </header>
+
+  <section class="abertura">
+    <div class="abertura-interno">
+      <h1>Nossa História</h1>
+      <p>Da triagem sob uma lona improvisada à sede atual: o caminho da Cooperativa Eco Amparo desde 2017.</p>
+      <div class="barra"></div>
+    </div>
+  </section>
+
+  <main>
+    <div class="linha-tempo">
+
+      <!-- 2017 -->
+      <section class="periodo" aria-labelledby="h-2017">
+        <span class="ano">2017</span>
+        <h2 id="h-2017">O Início de um Sonho Coletivo</h2>
+        <p>
+          A trajetória da Cooperativa Eco Amparo nasceu da necessidade real de transformar vidas. Por meio do Projeto de Fortalecimento de Vínculo da Associação AMAR (Ação Maior de Amor e Restauração), realizado no Conjunto Habitacional Vila das Pedras (Jd. Figueira), identificou-se que a maioria dos moradores já trabalhava com reciclagem, mas de forma individual e informal. Sem estrutura, cada trabalhador armazenava e separava os materiais no próprio terreno, gerando acúmulo de resíduos e condições insalubres de trabalho.
+        </p>
+
+        <!-- FIGURA 1: troque o src pelo caminho da sua imagem -->
+        <figure class="figura">
+          <img src="imagens/figura-1.jpg" alt="Reunião inicial com os catadores para motivar a criação da cooperativa" loading="lazy">
+          <figcaption>Reunião inicial com os catadores para motivar a criação da cooperativa</figcaption>
+        </figure>
+
+        <p>
+          Com o apoio do CISBRA (Consórcio Intermunicipal de Saneamento Básico da Região do Circuito das Águas), foram promovidos cursos de capacitação, ações de conscientização e visitas técnicas a outras cooperativas da região. Assim, em 2017, foi oficialmente fundada a Cooperativa de Trabalho dos Catadores de Materiais Recicláveis Eco Amparo (CNPJ: 30.706.617/0001-98), com a missão de gerar trabalho digno e autossustento para famílias de baixa renda e pessoas em situação de vulnerabilidade social.
+        </p>
+
+        <!-- FIGURA 2 -->
+        <figure class="figura">
+          <img src="imagens/figura-2.jpg" alt="Montagem do estatuto e da primeira diretoria da cooperativa" loading="lazy">
+          <figcaption>Montagem do estatuto e da primeira diretoria da cooperativa</figcaption>
+        </figure>
+
+        <p>
+          No começo, a estrutura era simples: o espaço interno contava apenas com refeitório, sala de reuniões, banheiros e uma pequena cozinha, enquanto toda a triagem dos materiais precisava ser feita na área externa, sob uma lona improvisada.
+        </p>
+
+        <!-- FIGURA 3 -->
+        <figure class="figura">
+          <img src="imagens/figura-3.jpg" alt="Início das atividades da Eco Amparo sob lona improvisada" loading="lazy">
+          <figcaption>Início das atividades da Eco Amparo sob lona improvisada</figcaption>
+        </figure>
+      </section>
+
+      <!-- 2017–2020 -->
+      <section class="periodo" aria-labelledby="h-2017-2020">
+        <span class="ano">2017–2020</span>
+        <h2 id="h-2017-2020">Os Primeiros Resultados e a Pausa Necessária</h2>
+        <p>Mesmo com estrutura limitada, a dedicação da equipe trouxe resultados expressivos logo no início:</p>
+        <ul class="resultados">
+          <li><strong>Outubro a dezembro de 2017:</strong> 12 cooperados processaram 24,96 toneladas de resíduos (recuperando 20,80 toneladas).</li>
+          <li><strong>Janeiro a outubro de 2018:</strong> 9 cooperados triaram 63,38 toneladas (recuperando 52,81 toneladas).</li>
+        </ul>
+        <p>
+          Apesar do empenho, a falta de apoio estrutural e financeiro fazia com que a retirada mensal ficasse abaixo de meio salário mínimo por pessoa. Sem condições de garantir o sustento das famílias, a cooperativa precisou suspender suas atividades em outubro de 2018.
+        </p>
+      </section>
+
+      <!-- 2021 -->
+      <section class="periodo" aria-labelledby="h-2021">
+        <span class="ano">2021</span>
+        <h2 id="h-2021">Reativação e Retomada com Dignidade</h2>
+        <p>
+          Em fevereiro de 2021, um esforço conjunto entre a Associação AMAR e o Fundo Social de Solidariedade de Amparo (na época presidido pela primeira-dama Sra. Léia Carolina Leite de Moraes) possibilitou a reativação da Eco Amparo, abrindo portas de trabalho inclusive para participantes do Projeto Segunda Chance.
+        </p>
+        <p>
+          Com a documentação regularizada, a cooperativa alugou um barracão coberto na Av. Rio Nilo, 139 (Jd. Figueira), garantindo mais conforto e segurança. Embora o trabalho ainda fosse manual — com mesas improvisadas de madeira e sem maquinário —, a parceria com a Secretaria Municipal do Meio Ambiente permitiu que o caminhão da coleta seletiva pública (que atendia 40% da área urbana) passasse a entregar os materiais diretamente no barracão.
+        </p>
+        <p>Naquele período, a rotina dos 12 cooperados era dividida em etapas bem definidas:</p>
+        <ol class="etapas">
+          <li>Recebimento e descarregamento dos materiais trazidos pela coleta seletiva municipal no centro do barracão.</li>
+          <li>Abastecimento contínuo das mesas e triagem manual dos recicláveis.</li>
+          <li>Fechamento, organização e venda diária dos big bags para otimizar o espaço limitado.</li>
+        </ol>
+
+        <!-- FIGURA 4 -->
+        <figure class="figura">
+          <img src="imagens/figura-4.jpg" alt="Central de Triagem em 2021, na Av. Rio Nilo, 139" loading="lazy">
+          <figcaption>Central de Triagem em 2021 – Av. Rio Nilo, 139</figcaption>
+        </figure>
+
+        <p>
+          Ao longo de 2021, a cooperativa processou 168,20 toneladas e recuperou 140,16 toneladas. Ainda assim, os custos fixos mensais (cerca de R$ 4.500,00 com aluguel, água, energia e contabilidade) consumiam grande parte da receita, mantendo a retirada média dos cooperados em torno de meio salário mínimo.
+        </p>
+      </section>
+
+      <!-- 2022–2023 -->
+      <section class="periodo" aria-labelledby="h-2022">
+        <span class="ano">2022–2023</span>
+        <h2 id="h-2022">Consolidação e Parcerias Estratégicas</h2>
+        <p>
+          Um grande passo para a estabilidade da cooperativa aconteceu em junho de 2022, com a assinatura de convênio com a Prefeitura Municipal de Amparo (Contrato nº 153/2022). O repasse mensal passou a custear o aluguel, a água e a energia de um galpão muito maior, localizado na Rua Benedito Lino de Campos, 75 (Jardim Modelo).
+        </p>
+        <p>
+          Com a nova estrutura, o local foi inaugurado em agosto de 2022 como Ponto Ecológico do município, ampliando o atendimento à população para receber também materiais de logística reversa, como pneus, lâmpadas, eletrônicos, pilhas e óleo de cozinha usado. Em dezembro do mesmo ano, uma parceria com a iniciativa privada garantiu o empréstimo (comodato) de uma prensa enfardadeira por 24 meses, modernizando o processo de trabalho.
+        </p>
+      </section>
+
+      <!-- 2024 até hoje -->
+      <section class="periodo atual" aria-labelledby="h-2024">
+        <span class="ano">2024 até hoje</span>
+        <div class="conteudo-atual">
+          <h2 id="h-2024">Nova Sede e Resistência</h2>
+          <p>
+            Em julho de 2024, após a solicitação do imóvel anterior pelo proprietário, a Eco Amparo mudou-se para sua sede atual na Rua Suécia, 200 (Loteamento Nardini) — um ponto estratégico e mais próximo ao Centro, o que facilita o acesso dos cooperados e da comunidade. Devido ao espaço mais compacto da nova unidade, a operação voltou a focar exclusivamente nos materiais recicláveis convencionais.
+          </p>
+
+          <!-- FIGURA 5 -->
+          <figure class="figura">
+            <img src="imagens/figura-5.jpg" alt="Central de Triagem atual, na Rua Suécia, 200" loading="lazy">
+            <figcaption>Central de Triagem Atual – Rua Suécia, 200</figcaption>
+          </figure>
+
+          <p>
+            Mesmo diante dos desafios burocráticos enfrentados durante a transição e renovação dos contratos públicos em 2024 — período em que a equipe manteve a triagem funcionando sem interrupções apesar de atrasos nos repasses —, a Cooperativa Eco Amparo segue firme em seu propósito: transformar resíduos em oportunidades, proteger o meio ambiente e assegurar o sustento digno de dezenas de famílias amparense.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="acao">
+      <a class="botao" href="index.html">Voltar à página inicial</a>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    &copy; EcoAmparo &ndash; Cooperativa de Trabalho dos Catadores de Materiais Recicláveis
+  </footer>
+
+</body>
+</html>
