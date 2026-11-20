@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quem somos | EcoAmparo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --verde-escuro: #0c4a2e;
+      --verde-medio: #156e45;
+      --verde-destaque: #9ce62a;
+      --verde-destaque-hover: #86cc1e;
+      --texto-claro: #f4f8f2;
+      --texto-escuro: #1e293b;
+      --fundo-pagina: #f6f4ec;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--texto-escuro);
+      background: var(--fundo-pagina);
+      line-height: 1.7;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--verde-destaque);
+      outline-offset: 3px;
+    }
+
+    /* ===== Barra superior (troque pelo seu header/menu se preferir) ===== */
+    .topo {
+      background: var(--verde-escuro);
+      padding: 16px 24px;
+    }
+    .topo-interno {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .topo a.logo {
+      color: var(--texto-claro);
+      font-weight: 800;
+      font-size: 1.25rem;
+      text-decoration: none;
+    }
+    .topo a.voltar {
+      color: var(--verde-destaque);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .topo a.voltar:hover { color: var(--texto-claro); }
+
+    /* ===== Título da página ===== */
+    .abertura {
+      background: var(--verde-escuro);
+      color: var(--texto-claro);
+      padding: 56px 24px 80px;
+    }
+    .abertura-interno {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .abertura h1 {
+      font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+      font-weight: 800;
+      line-height: 1.15;
+      max-width: 18em;
+    }
+    .abertura .barra {
+      width: 72px;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--verde-destaque);
+      margin-top: 24px;
+    }
+
+    /* ===== Conteúdo ===== */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 72px;
+    }
+
+    .bloco {
+      background: #fff;
+      border-radius: 20px;
+      padding: clamp(24px, 4vw, 48px);
+      box-shadow: 0 10px 30px rgba(12, 74, 46, .08);
+      margin-top: -40px;
+    }
+    .bloco + .bloco { margin-top: 32px; }
+
+    h2 {
+      color: var(--verde-escuro);
+      font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .bloco p { max-width: 70ch; }
+    .bloco p + p { margin-top: 16px; }
+
+    /* ===== Pilares ===== */
+    .intro-pilares { margin-top: 24px; font-weight: 600; }
+
+    .pilares {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .pilar {
+      background: var(--fundo-pagina);
+      border-top: 6px solid var(--verde-medio);
+      border-radius: 14px;
+      padding: 24px;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .pilar:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(12, 74, 46, .12);
+    }
+    .pilar.economico { border-top-color: var(--verde-destaque-hover); }
+    .pilar.ambiental { border-top-color: var(--verde-escuro); }
+
+    .pilar h3 {
+      color: var(--verde-escuro);
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .pilar p { font-size: .97rem; }
+
+    /* ===== Impacto ===== */
+    .impacto {
+      background: var(--verde-medio);
+      color: var(--texto-claro);
+    }
+    .impacto h2 { color: var(--verde-destaque); }
+    .impacto strong { color: var(--verde-destaque); }
+
+    /* ===== Botão de voltar ===== */
+    .acao { margin-top: 40px; text-align: center; }
+    .botao {
+      display: inline-block;
+      background: var(--verde-destaque);
+      color: var(--verde-escuro);
+      font-weight: 700;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 999px;
+      transition: background .2s, transform .2s;
+    }
+    .botao:hover { background: var(--verde-destaque-hover); transform: translateY(-2px); }
+
+    /* ===== Rodapé simples (use o seu footer.html no lugar) ===== */
+    .rodape {
+      background: var(--verde-escuro);
+      color: var(--texto-claro);
+      text-align: center;
+      padding: 24px;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 860px) {
+      .pilares { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topo">
+    <div class="topo-interno">
+      <a class="logo" href="index.html">EcoAmparo</a>
+      <a class="voltar" href="index.html">&larr; Voltar à página inicial</a>
+    </div>
+  </header>
+
+  <section class="abertura">
+    <div class="abertura-interno">
+      <h1>O Compromisso da Cooperativa Eco Amparo com a Reciclagem e a Sustentabilidade</h1>
+      <div class="barra"></div>
+    </div>
+  </section>
+
+  <main>
+
+    <section class="bloco" aria-labelledby="titulo-quem-somos">
+      <h2 id="titulo-quem-somos">Quem Somos</h2>
+      <p>
+        A Cooperativa de Trabalho dos Catadores de Materiais Recicláveis Eco Amparo é uma Organização da Sociedade Civil (OSC) fundada em 2017 por catadores e pessoas em situação de vulnerabilidade social. Atuamos em conformidade com a Lei nº 12.690/2012, que regulamenta as cooperativas de trabalho no Brasil, com foco no desenvolvimento sustentável e na defesa dos direitos humanos. Seguindo rigorosamente a Constituição Federal (art. 7º, inciso XXXIII), mantemos o compromisso ético de não admitir menores de 18 anos nem qualquer prática análoga ao trabalho escravo em nosso quadro de cooperados.
+      </p>
+      <p>
+        Realizamos a coleta, a triagem e a comercialização de materiais recicláveis em Amparo (SP) e região.
+      </p>
+      <p class="intro-pilares">Nosso trabalho é guiado pelos três pilares da sustentabilidade:</p>
+
+      <div class="pilares">
+        <article class="pilar social">
+          <h3>Pilar Social</h3>
+          <p>Promovemos a inclusão social, a seguridade e o acesso à saúde e a programas sociais. Também investimos na educação, na economia solidária e circular, além da capacitação profissional contínua dos nossos membros.</p>
+        </article>
+        <article class="pilar economico">
+          <h3>Pilar Econômico</h3>
+          <p>Combatemos a pobreza por meio da geração de trabalho e renda, comercializando os materiais recicláveis e distribuindo os resultados de forma justa, de acordo com a produtividade de cada cooperado.</p>
+        </article>
+        <article class="pilar ambiental">
+          <h3>Pilar Ambiental</h3>
+          <p>Reduzimos os impactos na natureza ao diminuir a extração de recursos naturais, economizar energia e prolongar a vida útil dos aterros sanitários, devolvendo os materiais à cadeia produtiva. Acreditamos que a coleta seletiva, aliada à educação ambiental e ao consumo consciente da comunidade, é a chave para reduzir o desperdício e transformar o futuro da cidade.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="bloco impacto" aria-labelledby="titulo-impacto">
+      <h2 id="titulo-impacto">Nosso Impacto na Prática</h2>
+      <p>
+        Em alinhamento com a Política Nacional de Resíduos Sólidos (Lei nº 12.305/2010), a Eco Amparo assegura que todo material coletado tenha a destinação ambientalmente correta e retorne à indústria como nova matéria-prima.
+      </p>
+      <p>
+        <strong>Cada resíduo separado pela população e entregue à cooperativa representa dignidade.</strong> Por meio da organização coletiva, catadores e trabalhadores antes vulneráveis conquistam profissionalização, um ambiente de trabalho seguro e o sustento de suas famílias.
+      </p>
+    </section>
+
+    <div class="acao">
+      <a class="botao" href="index.html">Voltar à página inicial</a>
+    </div>
+
+  </main>
+
+  <footer class="rodape">
+    &copy; EcoAmparo &ndash; Cooperativa de Trabalho dos Catadores de Materiais Recicláveis
+  </footer>
+
+</body>
+</html>
