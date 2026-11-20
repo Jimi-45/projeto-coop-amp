@@ -9,6 +9,7 @@
     --texto-claro: #ffffff;
     --texto-escuro: #1e293b;
     --fundo-menu: #ffffff;
+    --fundo-bege: #f5f2ea;
 }
 
 * {
@@ -929,7 +930,7 @@ header {
 }
 
 .compromisso__destaque {
-  border-left: 4px solid var(--verde-medio);
+  border-left: 4px solid var(--verde-destaque);
   padding-left: 28px;
   margin-bottom: 24px;
   color: var(--texto-escuro);
@@ -945,6 +946,99 @@ header {
   line-height: 1.9;
 }
 
+/* ===== SEÇÃO EMPRESAS PARCEIRAS ===== */
+.parceiros {
+    background: var(--fundo-bege);
+    padding: 90px 20px;
+    text-align: center;
+}
+
+.parceiros__container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.parceiros__titulo {
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--verde-escuro);
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+
+.parceiros__titulo::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 5px;
+    border-radius: 5px;
+    background: var(--verde-destaque);
+    margin: 18px auto 0;
+}
+
+.parceiros__texto {
+    max-width: 620px;
+    margin: 0 auto 10px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--texto-escuro);
+}
+
+.parceiros__destaque {
+    font-weight: 700;
+    color: var(--verde-medio);
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+}
+
+/* ===== GRADE DE LOGOS ===== */
+.parceiros__grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 24px;
+}
+
+.parceiro-card {
+    background: #fff;
+    border-radius: 18px;
+    height: 160px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(12, 74, 46, 0.08);
+    box-shadow: 0 6px 18px rgba(12, 74, 46, 0.07);
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+.parceiro-card.visivel {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity .6s ease, transform .6s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.parceiro-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--verde-destaque);
+    box-shadow: 0 16px 32px rgba(12, 74, 46, 0.16);
+}
+
+.parceiro-card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: .75;
+    transition: filter .3s ease, opacity .3s ease, transform .3s ease;
+}
+
+.parceiro-card:hover img {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.08);
+}
 
 /* =========================================
    RESPONSIVIDADE
@@ -1096,4 +1190,15 @@ header {
     font-size: 2rem;
   }
 }
+
+@media (max-width: 600px) {
+    .parceiros { padding: 60px 16px; }
+    .parceiros__grade { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .parceiro-card { height: 130px; padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .parceiro-card { opacity: 1; transform: none; transition: none; }
+}
+
 

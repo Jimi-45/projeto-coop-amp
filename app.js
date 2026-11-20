@@ -167,6 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 })();
 
+//SEÇÃO NOSSA MISSÃO
+
 /* 2) Entrada dos elementos ao rolar a página */
 (function () {
     var alvos = document.querySelectorAll('.saiba-mais h2, .saiba-mais__intro, .sm-item');
@@ -188,3 +190,18 @@ document.addEventListener('DOMContentLoaded', () => {
         obs.observe(el);
     });
 })();
+
+//SEÇÃO EMPRESAS PARCEIRAS
+
+// Animação de entrada dos cards ao rolar a página
+const cards = document.querySelectorAll('.parceiro-card');
+const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach((entrada, i) => {
+    if (entrada.isIntersecting) {
+        setTimeout(() => entrada.target.classList.add('visivel'), i * 80);
+        observador.unobserve(entrada.target);
+    }
+    });
+}, { threshold: 0.2 });
+cards.forEach(card => observador.observe(card));
+
