@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 
   <style>
     :root {
@@ -153,7 +154,7 @@
     .periodo p { max-width: 72ch; }
     .periodo p + p { margin-top: 16px; }
 
-    /* ===== Figuras (espaço para as imagens) ===== */
+    /* ===== Figuras ===== */
     figure.figura {
       margin: 28px 0;
       background: #fff;
@@ -162,13 +163,90 @@
       box-shadow: 0 10px 30px rgba(12, 74, 46, .10);
       max-width: 720px;
     }
-    figure.figura img {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      background: #dfe9dc; /* aparece enquanto a imagem não existe */
+    /* Foto com o tamanho original */
+    .foto-historia {
+      width: fit-content;          /* a caixa acompanha a largura da foto */
+      max-width: 100%;             /* nunca ultrapassa a coluna do texto */
+      margin: 24px 0;
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
+      border-bottom: 5px solid #8be000;
     }
+
+    .foto-historia img {
+      display: block;
+      width: auto;                 /* largura natural */
+      max-width: 100%;
+      height: auto;                /* sem altura fixa = sem corte */
+      cursor: zoom-in;
+      transition: transform .3s ease;
+    }
+
+    .foto-historia img:hover { transform: scale(1.02); }
+
+    .foto-historia figcaption {
+      padding: 16px 22px;
+      font-weight: 600;
+      color: #0b4a2a;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 20px;
+      background: rgba(0, 0, 0, .88);
+    }
+
+    .lightbox.ativo { display: flex; animation: aparecer .25s ease; }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 80vh;
+      width: auto;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, .5);
+    }
+
+    .lightbox p {
+      margin: 0;
+      color: #fff;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .lightbox-fechar {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 50%;
+      background: #fff;
+      color: #0b4a2a;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+
+    .lightbox-fechar:hover { background: #8be000; transform: rotate(90deg); }
+
+    @keyframes aparecer {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }   
+
     figure.figura figcaption {
       padding: 12px 18px;
       font-size: .9rem;
@@ -247,6 +325,12 @@
 </head>
 <body>
 
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-fechar" id="lightboxFechar" aria-label="Fechar imagem">&times;</button>
+    <img id="lightboxImg" src="" alt="">
+    <p id="lightboxLegenda"></p>
+  </div>
+
   <header class="topo">
     <div class="topo-interno">
       <a class="logo" href="index.html">EcoAmparo</a>
@@ -273,10 +357,9 @@
           A trajetória da Cooperativa Eco Amparo nasceu da necessidade real de transformar vidas. Por meio do Projeto de Fortalecimento de Vínculo da Associação AMAR (Ação Maior de Amor e Restauração), realizado no Conjunto Habitacional Vila das Pedras (Jd. Figueira), identificou-se que a maioria dos moradores já trabalhava com reciclagem, mas de forma individual e informal. Sem estrutura, cada trabalhador armazenava e separava os materiais no próprio terreno, gerando acúmulo de resíduos e condições insalubres de trabalho.
         </p>
 
-        <!-- FIGURA 1: troque o src pelo caminho da sua imagem -->
-        <figure class="figura">
-          <img src="imagens/figura-1.jpg" alt="Reunião inicial com os catadores para motivar a criação da cooperativa" loading="lazy">
-          <figcaption>Reunião inicial com os catadores para motivar a criação da cooperativa</figcaption>
+        <figure class="foto-historia">
+          <img src="img/Figura-1a.png" alt="Reunindo os catadores para motivar a criação da cooperativa" loading="lazy">
+          <figcaption>Reunindo os catadores para motivar a criação da cooperativa</figcaption>
         </figure>
 
         <p>
@@ -284,8 +367,8 @@
         </p>
 
         <!-- FIGURA 2 -->
-        <figure class="figura">
-          <img src="imagens/figura-2.jpg" alt="Montagem do estatuto e da primeira diretoria da cooperativa" loading="lazy">
+        <figure class="foto-historia">
+          <img src="img/figura-2.png" alt="Montagem do estatuto e da primeira diretoria da cooperativa">
           <figcaption>Montagem do estatuto e da primeira diretoria da cooperativa</figcaption>
         </figure>
 
@@ -294,8 +377,8 @@
         </p>
 
         <!-- FIGURA 3 -->
-        <figure class="figura">
-          <img src="imagens/figura-3.jpg" alt="Início das atividades da Eco Amparo sob lona improvisada" loading="lazy">
+        <figure class="foto-historia">
+          <img src="img/Figura-3.png" alt="Início das atividades da Eco Amparo sob lona improvisada" loading="lazy">
           <figcaption>Início das atividades da Eco Amparo sob lona improvisada</figcaption>
         </figure>
       </section>
@@ -332,8 +415,8 @@
         </ol>
 
         <!-- FIGURA 4 -->
-        <figure class="figura">
-          <img src="imagens/figura-4.jpg" alt="Central de Triagem em 2021, na Av. Rio Nilo, 139" loading="lazy">
+        <figure class="foto-historia">
+          <img src="img/figura-4.png" alt="Central de Triagem em 2021, na Av. Rio Nilo, 139" loading="lazy">
           <figcaption>Central de Triagem em 2021 – Av. Rio Nilo, 139</figcaption>
         </figure>
 
@@ -364,8 +447,9 @@
           </p>
 
           <!-- FIGURA 5 -->
-          <figure class="figura">
-            <img src="imagens/figura-5.jpg" alt="Central de Triagem atual, na Rua Suécia, 200" loading="lazy">
+          <figure class="foto-historia">
+            <img src="img/Figura-5.png" alt="Central de Triagem atual, na Rua Suécia, 200" loading="lazy">
+            <img src="img/Figura-6.png" alt="Central de Triagem atual, na Rua Suécia, 200" loading="lazy">
             <figcaption>Central de Triagem Atual – Rua Suécia, 200</figcaption>
           </figure>
 
@@ -385,6 +469,41 @@
   <footer class="rodape">
     &copy; EcoAmparo &ndash; Cooperativa de Trabalho dos Catadores de Materiais Recicláveis
   </footer>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxLegenda = document.getElementById('lightboxLegenda');
+    const btnFechar = document.getElementById('lightboxFechar');
+
+    function abrirLightbox(img) {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      const legenda = img.closest('figure').querySelector('figcaption');
+      lightboxLegenda.textContent = legenda ? legenda.textContent : '';
+      lightbox.classList.add('ativo');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function fecharLightbox() {
+      lightbox.classList.remove('ativo');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.foto-historia img').forEach(img => {
+      img.addEventListener('click', () => abrirLightbox(img));
+    });
+
+    btnFechar.addEventListener('click', fecharLightbox);
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) fecharLightbox();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') fecharLightbox();
+    });
+  </script>
 
 </body>
 </html>
