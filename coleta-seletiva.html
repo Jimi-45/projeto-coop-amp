@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 
 <style>
 /* ===== Paleta do site EcoAmparo ===== */
@@ -58,6 +59,7 @@ a { color: inherit; }
 }
 .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 800; font-size: 1.2rem; }
 .logo img { height: 44px; width: auto; }
+.logo span { color: var(--verde-destaque); }
 .menu { display: flex; gap: .4rem; list-style: none; }
 .menu a {
   display: block;
@@ -400,8 +402,8 @@ details.devolver .conteudo { padding: 0 1.3rem 1.2rem; }
 <header class="topo">
   <div class="container">
     <a class="logo" href="index.html" aria-label="EcoAmparo – página inicial">
-      <img src="img/logo-ecoamparo.png" alt="" onerror="this.style.display='none'">
-      EcoAmparo
+      <img src="img/logo.jpg" alt="Logo Cooperativa EcoAmparo" onerror="this.style.display='none'">
+      <div>Eco<span>Amparo</span></div>
     </a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
     <ul class="menu" id="menu">

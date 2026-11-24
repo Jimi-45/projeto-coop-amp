@@ -96,6 +96,12 @@ header {
     letter-spacing: -0.5px;
 }
 
+.logo-title span,
+.sv__titulo span {
+    color: var(--verde-destaque)
+}
+
+
 /* Links do Menu */
 .nav-links {
     display: flex;
