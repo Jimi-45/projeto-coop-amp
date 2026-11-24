@@ -10,58 +10,118 @@
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 
   <style>
+    /* ===== Paleta do site EcoAmparo ===== */
     :root {
       --verde-escuro: #0c4a2e;
       --verde-medio: #156e45;
       --verde-destaque: #9ce62a;
       --verde-destaque-hover: #86cc1e;
-      --texto-claro: #f4f8f2;
+      --texto-claro: #f4f8f1;
       --texto-escuro: #1e293b;
-      --fundo-pagina: #f6f4ec;
+      --fundo-menu: #0c4a2e;
+      --fundo-claro: #f6f3ea;
+      --laranja: #e8710a;
+      --laranja-claro: #fff1e0;
+      --raio: 14px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       color: var(--texto-escuro);
-      background: var(--fundo-pagina);
+      background: var(--fundo-claro);
       line-height: 1.7;
+      font-size: 1.05rem;
     }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--verde-destaque); outline-offset: 3px; }
 
-    a:focus-visible, button:focus-visible {
-      outline: 3px solid var(--verde-destaque);
-      outline-offset: 3px;
-    }
+    .container { width: min(1080px, 92%); margin-inline: auto; }
+    .texto { max-width: 68ch; }
 
-    /* ===== Barra superior (troque pelo seu header/menu se preferir) ===== */
+    /* ===== Cabeçalho / menu ===== */
     .topo {
-      background: var(--verde-escuro);
-      padding: 16px 24px;
+      background: var(--fundo-menu);
+      color: var(--texto-claro);
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
-    .topo-interno {
-      max-width: 1100px;
-      margin: 0 auto;
+    .topo .container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 1rem;
+      min-height: 72px;
     }
-    .topo a.logo {
-      color: var(--texto-claro);
-      font-weight: 800;
-      font-size: 1.25rem;
+    .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 800; font-size: 1.2rem; }
+    .logo img { height: 44px; width: auto; }
+    .menu { display: flex; gap: .4rem; list-style: none; }
+    .menu a {
+      display: block;
+      padding: .55rem .95rem;
+      border-radius: 999px;
       text-decoration: none;
-    }
-    .topo a.voltar {
-      color: var(--verde-destaque);
       font-weight: 600;
-      text-decoration: none;
-      transition: color .2s;
+      font-size: .97rem;
+      transition: background .2s, color .2s;
     }
-    .topo a.voltar:hover { color: var(--texto-claro); }
+    .menu a:hover { background: rgba(255,255,255,.12); }
+    .menu a[aria-current="page"] { background: var(--verde-destaque); color: var(--verde-escuro); }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 2px solid var(--texto-claro);
+      color: var(--texto-claro);
+      border-radius: 10px;
+      padding: .4rem .7rem;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* ===== Cabeçalho / menu ===== */
+    .topo {
+      background: var(--fundo-menu);
+      color: var(--texto-claro);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .topo .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 72px;
+    }
+    .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 800; font-size: 1.2rem; }
+    .logo img { height: 44px; width: auto; }
+    .menu { display: flex; gap: .4rem; list-style: none; }
+    .menu a {
+      display: block;
+      padding: .55rem .95rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .97rem;
+      transition: background .2s, color .2s;
+    }
+    .menu a:hover { background: rgba(255,255,255,.12); }
+    .menu a[aria-current="page"] { background: var(--verde-destaque); color: var(--verde-escuro); }
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 2px solid var(--texto-claro);
+      color: var(--texto-claro);
+      border-radius: 10px;
+      padding: .4rem .7rem;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
 
     /* ===== Título da página ===== */
     .abertura {
@@ -321,6 +381,50 @@
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; scroll-behavior: auto !important; }
     }
+
+    /* ===== Animação de entrada (só na abertura) ===== */
+
+    @keyframes entrar { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    .abertura .container > * { animation: entrar .7s ease both; }
+    .abertura .container > *:nth-child(2) { animation-delay: .12s; }
+    .abertura .container > *:nth-child(3) { animation-delay: .24s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+
+    /* ===== Responsivo ===== */
+
+    @media (max-width: 860px) {
+      .menu-btn { display: block; }
+      .menu {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: var(--fundo-menu);
+        padding: .6rem 4% 1.2rem;
+      }
+      .menu.aberto { display: flex; }
+      .materiais { grid-template-columns: repeat(2, 1fr); }
+      .grade-especiais { grid-template-columns: repeat(2, 1fr); }
+      .ponto { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .dica { grid-template-columns: 1fr; }
+      .grade-especiais { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 860px) {
+      .pilares { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; scroll-behavior: auto !important; }
+    }
+
   </style>
 </head>
 <body>
@@ -332,13 +436,23 @@
   </div>
 
   <header class="topo">
-    <div class="topo-interno">
-      <a class="logo" href="index.html">EcoAmparo</a>
-      <a class="voltar" href="index.html">&larr; Voltar à página inicial</a>
+    <div class="container">
+      <a class="logo" href="index.html" aria-label="EcoAmparo – página inicial">
+        <img src="img/logo-ecoamparo.png" alt="" onerror="this.style.display='none'">
+        EcoAmparo
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+      <ul class="menu" id="menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="quem-somos.html">Quem somos</a></li>
+        <li><a href="nossa-historia.html" aria-current="page">Nossa história</a></li>
+        <li><a href="coleta-seletiva.html">Coleta seletiva</a></li>
+        <li><a href="index.html#contato">Contato</a></li>
+      </ul>
     </div>
   </header>
 
-  <section class="abertura">
+  <section class="abertura" id="historia">
     <div class="abertura-interno">
       <h1>Nossa História</h1>
       <p>Da triagem sob uma lona improvisada à sede atual: o caminho da Cooperativa Eco Amparo desde 2017.</p>
@@ -462,7 +576,7 @@
     </div>
 
     <div class="acao">
-      <a class="botao" href="index.html">Voltar à página inicial</a>
+      <a class="botao" href="#historia">Voltar ao início do guia</a>
     </div>
   </main>
 
@@ -503,6 +617,25 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') fecharLightbox();
     });
+
+    // Menu no celular
+    const menuBtn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
+    menuBtn.addEventListener('click', () => {
+      const aberto = menu.classList.toggle('aberto');
+      menuBtn.setAttribute('aria-expanded', aberto);
+    });
+
+    // Gravuras: se a imagem carregar, esconde o espaço reservado; se não, mantém o aviso
+    document.querySelectorAll('.gravura img').forEach(img => {
+    const figura = img.closest('.gravura');
+    const mostrar = () => figura.classList.add('tem-imagem');
+    const esconder = () => { img.style.display = 'none'; };
+    if (img.complete && img.naturalWidth > 0) mostrar();
+    img.addEventListener('load', mostrar);
+    img.addEventListener('error', esconder);
+    });
+
   </script>
 
 </body>
