@@ -606,40 +606,40 @@ details.devolver .conteudo { padding: 0 1.3rem 1.2rem; }
 </div>
 
 <script>
-// Menu no celular
-const menuBtn = document.getElementById('menuBtn');
-const menu = document.getElementById('menu');
-menuBtn.addEventListener('click', () => {
-  const aberto = menu.classList.toggle('aberto');
-  menuBtn.setAttribute('aria-expanded', aberto);
-});
-
-// Gravuras: se a imagem carregar, esconde o espaço reservado; se não, mantém o aviso
-document.querySelectorAll('.gravura img').forEach(img => {
-  const figura = img.closest('.gravura');
-  const mostrar = () => figura.classList.add('tem-imagem');
-  const esconder = () => { img.style.display = 'none'; };
-  if (img.complete && img.naturalWidth > 0) mostrar();
-  img.addEventListener('load', mostrar);
-  img.addEventListener('error', esconder);
-});
-
-// Lightbox: clique na gravura para ampliar, "×", clique fora ou Esc para fechar
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = lightbox.querySelector('img');
-function fechar() { lightbox.classList.remove('aberto'); document.body.style.overflow = ''; }
-document.querySelectorAll('.gravura img').forEach(img => {
-  img.addEventListener('click', () => {
-    lightboxImg.src = img.src;
-    lightboxImg.alt = img.alt;
-    lightbox.classList.add('aberto');
-    document.body.style.overflow = 'hidden';
-    document.getElementById('fecharLightbox').focus();
+  // Menu no celular
+  const menuBtn = document.getElementById('menuBtn');
+  const menu = document.getElementById('menu');
+  menuBtn.addEventListener('click', () => {
+    const aberto = menu.classList.toggle('aberto');
+    menuBtn.setAttribute('aria-expanded', aberto);
   });
-});
-document.getElementById('fecharLightbox').addEventListener('click', fechar);
-lightbox.addEventListener('click', e => { if (e.target === lightbox) fechar(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') fechar(); });
+
+  // Gravuras: se a imagem carregar, esconde o espaço reservado; se não, mantém o aviso
+  document.querySelectorAll('.gravura img').forEach(img => {
+    const figura = img.closest('.gravura');
+    const mostrar = () => figura.classList.add('tem-imagem');
+    const esconder = () => { img.style.display = 'none'; };
+    if (img.complete && img.naturalWidth > 0) mostrar();
+    img.addEventListener('load', mostrar);
+    img.addEventListener('error', esconder);
+  });
+
+  // Lightbox: clique na gravura para ampliar, "×", clique fora ou Esc para fechar
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  function fechar() { lightbox.classList.remove('aberto'); document.body.style.overflow = ''; }
+  document.querySelectorAll('.gravura img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('aberto');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('fecharLightbox').focus();
+    });
+  });
+  document.getElementById('fecharLightbox').addEventListener('click', fechar);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) fechar(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') fechar(); });
 </script>
 </body>
 </html>
