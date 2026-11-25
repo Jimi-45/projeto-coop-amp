@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoAmparo - Lixo Eletrônico e Baterias</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Paleta do site EcoAmparo ===== */
+    :root {
+      --verde-escuro: #0c4a2e;
+      --verde-medio: #156e45;
+      --verde-destaque: #9ce62a;
+      --verde-destaque-hover: #86cc1e;
+      --texto-claro: #f4f8f1;
+      --texto-escuro: #1e293b;
+      --fundo-menu: #0c4a2e;
+      --fundo-claro: #f6f3ea;
+      --laranja: #e8710a;
+      --laranja-claro: #fff1e0;
+      --raio: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--fundo-claro);
+      color: var(--texto-escuro);
+      line-height: 1.65;
+    }
+
+    /* ===== Cabeçalho e Menu ===== */
+    header {
+      background-color: var(--fundo-menu);
+      color: var(--texto-claro);
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--texto-claro);
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background-color: #ffffff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--verde-escuro);
+      font-size: 1.2rem;
+    }
+
+    .logo span {
+      color: var(--verde-destaque);
+    }
+
+    .menu-btn {
+      background: transparent;
+      border: 1.5px solid rgba(244, 248, 241, 0.4);
+      color: var(--texto-claro);
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .menu-btn:hover {
+      border-color: var(--verde-destaque);
+      color: var(--verde-destaque);
+    }
+
+    nav ul {
+      list-style: none;
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      background-color: var(--verde-escuro);
+      padding: 1.5rem;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    nav ul.aberto {
+      display: flex;
+    }
+
+    nav a {
+      color: var(--texto-claro);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--verde-destaque);
+    }
+
+    /* ===== Seção Hero ===== */
+    .hero {
+      background-color: var(--verde-escuro);
+      color: var(--texto-claro);
+      padding: 2.5rem 1.5rem 5rem;
+    }
+
+    .hero-content {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background-color: rgba(156, 230, 42, 0.15);
+      color: var(--verde-destaque);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.35rem 0.85rem;
+      border-radius: 99px;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.85rem, 5vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.2;
+      max-width: 720px;
+      margin-bottom: 1rem;
+    }
+
+    .hero-lead {
+      font-size: 1.05rem;
+      color: rgba(244, 248, 241, 0.9);
+      max-width: 700px;
+      margin-bottom: 1.5rem;
+    }
+
+    .barra-destaque {
+      width: 65px;
+      height: 5px;
+      background-color: var(--verde-destaque);
+      border-radius: 99px;
+    }
+
+    /* ===== Conteúdo Principal e Cards ===== */
+    main {
+      max-width: 1100px;
+      margin: -2.5rem auto 3.5rem;
+      padding: 0 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: var(--raio);
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 20px rgba(12, 74, 46, 0.06);
+      scroll-margin-top: 85px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .icon-alerta {
+      background-color: var(--laranja-claro);
+      color: var(--laranja);
+    }
+
+    .icon-natureza {
+      background-color: #e8f5ee;
+      color: var(--verde-medio);
+    }
+
+    .card h2 {
+      color: var(--verde-escuro);
+      font-size: 1.4rem;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .card > p {
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+      color: var(--texto-escuro);
+    }
+
+    /* ===== Listas Estilizadas ===== */
+    .lista-itens {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .lista-itens li {
+      padding: 1rem 1.15rem;
+      border-radius: 10px;
+      background-color: #f8faf9;
+      border-left: 4px solid var(--verde-medio);
+      font-size: 0.98rem;
+    }
+
+    .lista-itens.alerta li {
+      background-color: var(--laranja-claro);
+      border-left-color: var(--laranja);
+    }
+
+    .lista-itens li strong {
+      display: block;
+      color: var(--verde-escuro);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      font-size: 1.02rem;
+    }
+
+    .lista-itens.alerta li strong {
+      color: #b55304;
+    }
+
+    /* Passo a passo numerado */
+    .lista-passos {
+      list-style: none;
+      counter-reset: passo-counter;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .lista-passos li {
+      counter-increment: passo-counter;
+      position: relative;
+      padding: 1rem 1.15rem 1rem 3.5rem;
+      border-radius: 10px;
+      background-color: #f4f8f1;
+      border: 1px solid rgba(21, 110, 69, 0.15);
+    }
+
+    .lista-passos li::before {
+      content: counter(passo-counter);
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      width: 28px;
+      height: 28px;
+      background-color: var(--verde-escuro);
+      color: var(--verde-destaque);
+      font-weight: 800;
+      font-size: 0.9rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lista-passos li strong {
+      display: block;
+      color: var(--verde-escuro);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      font-size: 1.02rem;
+    }
+
+    /* ===== Espaço Reservado para Imagens ===== */
+    .espaco-imagem {
+      margin: 1.5rem 0 0.5rem;
+      border: 2px dashed rgba(21, 110, 69, 0.35);
+      background-color: #f8faf9;
+      border-radius: 12px;
+      padding: 2.25rem 1.25rem;
+      text-align: center;
+      color: var(--verde-medio);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 200px;
+    }
+
+    .espaco-imagem span.icone-foto {
+      font-size: 2rem;
+    }
+
+    .espaco-imagem strong {
+      font-size: 1rem;
+      color: var(--verde-escuro);
+    }
+
+    .espaco-imagem small {
+      font-size: 0.85rem;
+      color: #64748b;
+      max-width: 420px;
+    }
+
+    /* Caso você substitua a div por uma tag <img>, ela já fica responsiva */
+    .espaco-imagem img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      display: block;
+    }
+
+    /* ===== Botão Voltar ao Topo ===== */
+    .btn-topo {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      background-color: var(--verde-escuro);
+      color: var(--verde-destaque);
+      border: 2px solid var(--verde-destaque);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+    }
+
+    .btn-topo.visivel {
+      display: flex;
+    }
+
+    /* ===== Rodapé ===== */
+    footer {
+      background-color: var(--verde-escuro);
+      color: var(--texto-claro);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    footer p + p {
+      margin-top: 0.4rem;
+      color: rgba(244, 248, 241, 0.75);
+      font-size: 0.82rem;
+    }
+
+    /* ===== Responsividade para Telas Maiores ===== */
+    @media (min-width: 768px) {
+      .menu-btn {
+        display: none;
+      }
+
+      nav ul {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+        gap: 2rem;
+      }
+
+      .card {
+        padding: 2.5rem 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <div class="logo-icon">♻️</div>
+        <div><span>Eco</span>Amparo</div>
+      </a>
+
+      <button class="menu-btn" id="btnMenu" aria-expanded="false" aria-controls="menuLista">
+        Menu
+      </button>
+
+      <nav>
+        <ul id="menuLista">
+          <li><a href="#nao-fazer">O que NÃO fazer</a></li>
+          <li><a href="#consequencias">Consequências</a></li>
+          <li><a href="#como-descartar">Como descartar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Banner Principal -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-tag">Guia de Descarte Consciente</span>
+      <h1>Lixo Eletrônico e baterias</h1>
+      <p class="hero-lead">
+        O descarte inadequado de lixo eletrônico (e-lixo) e baterias é um problema ambiental silencioso, pois esses itens contêm substâncias altamente tóxicas que exigem cuidados especiais ao fim de sua vida útil.
+      </p>
+      <div class="barra-destaque"></div>
+    </div>
+  </section>
+
+  <!-- Conteúdo Principal -->
+  <main>
+
+    <!-- Seção 1: O que NÃO fazer -->
+    <section id="nao-fazer" class="card">
+      <div class="card-header">
+        <div class="card-icon icon-alerta">⚠️</div>
+        <h2>O que NÃO fazer com lixo eletrônico e baterias</h2>
+      </div>
+
+      <ul class="lista-itens alerta">
+        <li>
+          <strong>Não jogue no lixo comum</strong>
+          Pilhas, baterias, celulares, cabos e eletrodomésticos quebrados nunca devem ir para a lixeira doméstica comum nem para a coleta seletiva tradicional (de papel, plástico e vidro).
+        </li>
+        <li>
+          <strong>Não descarte na natureza ou terrenos baldios</strong>
+          Abandonar esses materiais ao ar livre expõe os componentes internos à chuva e ao sol, acelerando a liberação de substâncias perigosas.
+        </li>
+        <li>
+          <strong>Não tente quebrar, desmontar ou queimar</strong>
+          Abrir baterias ou queimar placas eletrônicas libera gases tóxicos no ar e oferece risco direto de explosão e queimaduras químicas.
+        </li>
+      </ul>
+
+      <!-- ESPAÇO PARA IMAGEM 1 -->
+      <!-- Para inserir sua foto, substitua o conteúdo desta div por: <img src="caminho-da-imagem-1.jpg" alt="Descrição da imagem"> -->
+      <div class="espaco-imagem">
+        <span class="icone-foto">🖼️</span>
+        <strong>Espaço reservado para a Imagem 1</strong>
+        <small>Sugestão: foto ilustrativa de pilhas, baterias ou aparelhos eletrônicos separados para descarte.</small>
+      </div>
+    </section>
+
+    <!-- Seção 2: Consequências -->
+    <section id="consequencias" class="card">
+      <div class="card-header">
+        <div class="card-icon icon-natureza">🌍</div>
+        <h2>Consequências para o meio ambiente e a saúde</h2>
+      </div>
+
+      <p>
+        Diferente do lixo orgânico, os eletrônicos não se decompõem facilmente e carregam metais pesados como chumbo, mercúrio, cádmio e lítio. Quando descartados de forma errada:
+      </p>
+
+      <ul class="lista-itens">
+        <li>
+          <strong>Contaminação do solo e da água</strong>
+          Nos aterros sanitários ou na natureza, a chuva lava esses resíduos e leva os metais pesados para a terra e para os lençóis freáticos, contaminando rios e plantações.
+        </li>
+        <li>
+          <strong>Risco à saúde humana e animal</strong>
+          Esses elementos tóxicos entram na cadeia alimentar por meio da água e dos alimentos contaminados, podendo causar doenças graves no sistema nervoso, nos rins e nos pulmões.
+        </li>
+        <li>
+          <strong>Risco de incêndios</strong>
+          Baterias de lítio amassadas ou perfuradas nos caminhões de lixo podem entrar em combustão espontânea, provocando incêndios de difícil controle.
+        </li>
+      </ul>
+    </section>
+
+    <!-- Seção 3: O que fazer -->
+    <section id="como-descartar" class="card">
+      <div class="card-header">
+        <div class="card-icon icon-natureza">🔋</div>
+        <h2>O que fazer para descartar corretamente</h2>
+      </div>
+
+      <p>
+        A logística reversa garante que esses materiais sejam desmontados com segurança e tenham seus componentes reaproveitados pela indústria:
+      </p>
+
+      <ol class="lista-passos">
+        <li>
+          <strong>Separe em casa</strong>
+          Guarde pilhas, baterias, carregadores, fones de ouvido e aparelhos sem conserto em uma caixa seca, longe da umidade e do alcance de crianças e animais.
+        </li>
+        <li>
+          <strong>Proteja os polos das baterias</strong>
+          Antes de descartar baterias maiores ou pilhas recarregáveis, cole um pedaço de fita isolante nas pontas metálicas para evitar curto-circuito.
+        </li>
+        <li>
+          <strong>Apague seus dados pessoais</strong>
+          No caso de celulares, tablets e computadores, restaure as configurações de fábrica e retire chips ou cartões de memória antes de entregar o aparelho.
+        </li>
+        <li>
+          <strong>Leve a pontos de coleta especializados</strong>
+          Deposite pilhas e baterias nos coletores específicos encontrados em supermercados, farmácias e lojas de eletrônicos. Para aparelhos maiores ou outros eletrônicos, procure os Ecopontos da sua prefeitura ou pontos de coleta de associações como a Green Eletron e a ABREE.
+        </li>
+      </ol>
+
+      <!-- ESPAÇO PARA IMAGEM 2 -->
+      <!-- Para inserir sua foto, substitua o conteúdo desta div por: <img src="caminho-da-imagem-2.jpg" alt="Descrição da imagem"> -->
+      <div class="espaco-imagem">
+        <span class="icone-foto">🖼️</span>
+        <strong>Espaço reservado para a Imagem 2</strong>
+        <small>Sugestão: foto de ponto de coleta de lixo eletrônico ou coletor específico para pilhas e baterias.</small>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Botão Voltar ao Topo -->
+  <button class="btn-topo" id="btnTopo" aria-label="Voltar ao topo">↑</button>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; 2026 Cooperativa EcoAmparo. Todos os direitos reservados.</p>
+    <p>Educação ambiental e coleta consciente para um futuro sustentável.</p>
+  </footer>
+
+  <!-- JavaScript para interatividade -->
+  <script>
+    const btnMenu = document.getElementById('btnMenu');
+    const menuLista = document.getElementById('menuLista');
+    const btnTopo = document.getElementById('btnTopo');
+
+    // Abre e fecha o menu no celular
+    btnMenu.addEventListener('click', () => {
+      const estaAberto = menuLista.classList.toggle('aberto');
+      btnMenu.setAttribute('aria-expanded', estaAberto);
+      btnMenu.textContent = estaAberto ? 'Fechar' : 'Menu';
+    });
+
+    // Fecha o menu ao clicar em um link
+    document.querySelectorAll('#menuLista a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuLista.classList.remove('aberto');
+        btnMenu.setAttribute('aria-expanded', 'false');
+        btnMenu.textContent = 'Menu';
+      });
+    });
+
+    // Mostra botão de voltar ao topo ao rolar a página
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        btnTopo.classList.add('visivel');
+      } else {
+        btnTopo.classList.remove('visivel');
+      }
+    });
+
+    btnTopo.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+</html>

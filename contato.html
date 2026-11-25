@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato - EcoAmparo</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+
+  <style>
+    /* ===== Paleta e Configurações EcoAmparo ===== */
+    :root {
+      --verde-escuro: #0c4a2e;
+      --verde-medio: #156e45;
+      --verde-destaque: #9ce62a;
+      --verde-destaque-hover: #86cc1e;
+      --texto-claro: #f4f8f1;
+      --texto-escuro: #1e293b;
+      --fundo-menu: #0c4a2e;
+      --fundo-claro: #f6f3ea;
+      --laranja: #e8710a;
+      --laranja-claro: #fff1e0;
+      --raio: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--fundo-claro);
+      color: var(--texto-escuro);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== Cabeçalho e Menu ===== */
+    header {
+      background-color: var(--fundo-menu);
+      color: var(--texto-claro);
+      padding: 1rem 1.25rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    .nav-container {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--texto-claro);
+      letter-spacing: -0.02em;
+    }
+
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--verde-escuro);
+      font-size: 1.15rem;
+    }
+
+    .logo span {
+      color: var(--verde-destaque);
+    }
+
+    .menu-btn {
+      background: transparent;
+      border: 1.5px solid rgba(244, 248, 241, 0.45);
+      color: var(--texto-claro);
+      padding: 0.45rem 0.95rem;
+      border-radius: 10px;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .menu-btn:hover,
+    .menu-btn:focus {
+      border-color: var(--verde-destaque);
+      color: var(--verde-destaque);
+    }
+
+    nav ul {
+      list-style: none;
+      display: none;
+      flex-direction: column;
+      gap: 0.9rem;
+      background-color: var(--verde-escuro);
+      padding: 1.25rem 1.5rem;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    nav ul.aberto {
+      display: flex;
+    }
+
+    nav a {
+      color: var(--texto-claro);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: block;
+      padding: 0.25rem 0;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--verde-destaque);
+    }
+
+    /* ===== Banner Principal (Hero) ===== */
+    .hero {
+      background-color: var(--verde-escuro);
+      color: var(--texto-claro);
+      padding: 2.25rem 1.25rem 4.75rem;
+    }
+
+    .hero-content {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .tag-categoria {
+      display: inline-block;
+      background-color: rgba(156, 230, 42, 0.16);
+      color: var(--verde-destaque);
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.75rem;
+      border-radius: 99px;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.75rem, 6vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      font-size: 1.02rem;
+      color: rgba(244, 248, 241, 0.9);
+      max-width: 680px;
+      margin-bottom: 1.35rem;
+    }
+
+    .barra-destaque {
+      width: 64px;
+      height: 5px;
+      background-color: var(--verde-destaque);
+      border-radius: 99px;
+    }
+
+    /* ===== Conteúdo Principal ===== */
+    main {
+      max-width: 960px;
+      margin: -2.5rem auto 3rem;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: var(--raio);
+      padding: 1.65rem 1.35rem;
+      box-shadow: 0 4px 20px rgba(12, 74, 46, 0.07);
+    }
+
+    .card h2 {
+      color: var(--verde-escuro);
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .card-intro {
+      margin-bottom: 1.25rem;
+      color: #334155;
+      font-size: 0.98rem;
+    }
+
+    /* ===== Cartões de Informações de Contato ===== */
+    .contato-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contato-item {
+      background-color: #f8faf9;
+      border-left: 4px solid var(--verde-medio);
+      border-radius: 10px;
+      padding: 1.05rem 1.15rem;
+    }
+
+    .contato-item strong {
+      display: block;
+      color: var(--verde-escuro);
+      font-size: 0.98rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .campo-vazio {
+      min-height: 1.6rem;
+      color: var(--texto-escuro);
+      font-size: 0.95rem;
+      padding: 0.35rem 0.65rem;
+      background-color: #ffffff;
+      border: 1.5px dashed #cbd5e1;
+      border-radius: 8px;
+    }
+
+    /* ===== Formulário de Mensagem ===== */
+    .form-contato {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-grupo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-grupo label {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--verde-escuro);
+    }
+
+    .form-grupo input,
+    .form-grupo select,
+    .form-grupo textarea {
+      width: 100%;
+      padding: 0.8rem 0.95rem;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.96rem;
+      color: var(--texto-escuro);
+      background-color: #f8fafc;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .form-grupo input:focus,
+    .form-grupo select:focus,
+    .form-grupo textarea:focus {
+      outline: none;
+      border-color: var(--verde-medio);
+      background-color: #ffffff;
+    }
+
+    .form-grupo textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .btn-enviar {
+      background-color: var(--verde-destaque);
+      color: var(--verde-escuro);
+      border: none;
+      border-radius: 10px;
+      padding: 0.9rem 1.5rem;
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-enviar:hover {
+      background-color: var(--verde-destaque-hover);
+    }
+
+    .btn-enviar:active {
+      transform: scale(0.99);
+    }
+
+    .feedback-form {
+      display: none;
+      background-color: #f2f9f4;
+      border-left: 4px solid var(--verde-medio);
+      color: var(--verde-escuro);
+      padding: 0.9rem 1rem;
+      border-radius: 8px;
+      font-size: 0.94rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .feedback-form.visivel {
+      display: block;
+    }
+
+    /* ===== Bloco de Coleta / Atendimento ===== */
+    .card-destaque {
+      border-top: 5px solid var(--laranja);
+    }
+
+    .card-destaque h2 {
+      color: #b85304;
+    }
+
+    /* ===== Rodapé e Botão Topo ===== */
+    footer {
+      background-color: var(--verde-escuro);
+      color: var(--texto-claro);
+      text-align: center;
+      padding: 2rem 1.25rem;
+      font-size: 0.88rem;
+    }
+
+    footer p {
+      opacity: 0.9;
+    }
+
+    .btn-topo {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      background-color: var(--verde-destaque);
+      color: var(--verde-escuro);
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-weight: 800;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .btn-topo:hover {
+      background-color: var(--verde-destaque-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-topo.visivel {
+      display: flex;
+    }
+
+    /* ===== Responsividade ===== */
+    @media (min-width: 768px) {
+      .menu-btn {
+        display: none;
+      }
+
+      nav ul {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+        gap: 1.75rem;
+        width: auto;
+      }
+
+      .card {
+        padding: 2.25rem 2.5rem;
+      }
+
+      .contato-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <div class="logo-icon">♻️</div>
+        <div><span>Eco</span>Amparo</div>
+      </a>
+
+      <button class="menu-btn" id="btnMenu" aria-expanded="false" aria-controls="menuLista">
+        Menu
+      </button>
+
+      <nav>
+        <ul id="menuLista">
+          <li><a href="#canais">Canais de Atendimento</a></li>
+          <li><a href="#formulario">Enviar Mensagem</a></li>
+          <li><a href="#horario">Horário e Coleta</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Banner Principal -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="tag-categoria">Fale Conosco</span>
+      <h1>Entre em Contato</h1>
+      <p>
+        Tire suas dúvidas sobre coleta seletiva, pontos de entrega voluntária, parcerias ou agendamento de retirada de materiais recicláveis.
+      </p>
+      <div class="barra-destaque"></div>
+    </div>
+  </section>
+
+  <!-- Conteúdo Principal -->
+  <main>
+
+    <!-- Seção 1: Dados de Contato (Campos vazios para preenchimento) -->
+    <section id="canais" class="card">
+      <h2>Canais de Atendimento</h2>
+      <p class="card-intro">
+        Utilize os canais abaixo para falar diretamente com a equipe da cooperativa.
+      </p>
+
+      <div class="contato-grid">
+        <div class="contato-item">
+          <strong>Telefone / WhatsApp</strong>
+          <div class="campo-vazio" id="contato-telefone"><!-- Insira o telefone aqui --></div>
+        </div>
+
+        <div class="contato-item">
+          <strong>E-mail</strong>
+          <div class="campo-vazio" id="contato-email"><!-- Insira o e-mail aqui --></div>
+        </div>
+
+        <div class="contato-item">
+          <strong>Endereço / Sede</strong>
+          <div class="campo-vazio" id="contato-endereco"><!-- Insira o endereço completo aqui --></div>
+        </div>
+
+        <div class="contato-item">
+          <strong>Redes Sociais</strong>
+          <div class="campo-vazio" id="contato-redes"><!-- Insira Instagram / Facebook / site aqui --></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 2: Formulário de Contato -->
+    <section id="formulario" class="card">
+      <h2>Envie uma Mensagem</h2>
+      <p class="card-intro">
+        Preencha os campos abaixo e retornaremos o mais breve possível.
+      </p>
+
+      <form class="form-contato" id="formContato">
+        <div class="form-grupo">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+        </div>
+
+        <div class="form-grupo">
+          <label for="email">Seu e-mail</label>
+          <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+        </div>
+
+        <div class="form-grupo">
+          <label for="telefone">Telefone / WhatsApp</label>
+          <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000">
+        </div>
+
+        <div class="form-grupo">
+          <label for="assunto">Assunto</label>
+          <select id="assunto" name="assunto">
+            <option value="duvidas">Dúvidas sobre descarte</option>
+            <option value="coleta">Solicitar coleta / ponto de entrega</option>
+            <option value="parceria">Parcerias e empresas</option>
+            <option value="outros">Outros assuntos</option>
+          </select>
+        </div>
+
+        <div class="form-grupo">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem aqui..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+        <div class="feedback-form" id="feedbackForm">
+          Mensagem registrada! Configure o destino de envio ou utilize nossos canais diretos acima.
+        </div>
+      </form>
+    </section>
+
+    <!-- Seção 3: Horário de Funcionamento e Observações -->
+    <section id="horario" class="card card-destaque">
+      <h2>Horário de Atendimento</h2>
+      <p class="card-intro">
+        Confira os dias e horários para entrega de materiais ou atendimento presencial.
+      </p>
+
+      <div class="contato-grid">
+        <div class="contato-item">
+          <strong>Dias e Horários</strong>
+          <div class="campo-vazio" id="contato-horario"><!-- Insira os dias e horários de funcionamento aqui --></div>
+        </div>
+
+        <div class="contato-item">
+          <strong>Ponto de Referência / Observações</strong>
+          <div class="campo-vazio" id="contato-observacoes"><!-- Insira observações ou ponto de referência aqui --></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; 2026 Cooperativa EcoAmparo. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Botão Voltar ao Topo -->
+  <button class="btn-topo" id="btnTopo" aria-label="Voltar ao topo" title="Voltar ao topo">↑</button>
+
+  <!-- JavaScript -->
+  <script>
+    // Controle do Menu Mobile
+    const btnMenu = document.getElementById('btnMenu');
+    const menuLista = document.getElementById('menuLista');
+
+    btnMenu.addEventListener('click', () => {
+      const aberto = menuLista.classList.toggle('aberto');
+      btnMenu.setAttribute('aria-expanded', aberto);
+      btnMenu.textContent = aberto ? 'Fechar' : 'Menu';
+    });
+
+    document.querySelectorAll('#menuLista a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuLista.classList.remove('aberto');
+        btnMenu.setAttribute('aria-expanded', 'false');
+        btnMenu.textContent = 'Menu';
+      });
+    });
+
+    // Validação e feedback visual do formulário
+    const formContato = document.getElementById('formContato');
+    const feedbackForm = document.getElementById('feedbackForm');
+
+    formContato.addEventListener('submit', (evento) => {
+      evento.preventDefault();
+      feedbackForm.classList.add('visivel');
+      formContato.reset();
+    });
+
+    // Botão Voltar ao Topo
+    const btnTopo = document.getElementById('btnTopo');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        btnTopo.classList.add('visivel');
+      } else {
+        btnTopo.classList.remove('visivel');
+      }
+    });
+
+    btnTopo.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+</html>

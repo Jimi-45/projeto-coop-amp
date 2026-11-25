@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transparência | EcoAmparo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde-escuro:#0c4a2e;
+    --verde-medio:#156e45;
+    --verde-destaque:#9ce62a;
+    --verde-destaque-hover:#86cc1e;
+    --texto-claro:#f4f9f2;
+    --texto-escuro:#1e293b;
+    --fundo-claro:#f3f6ef;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--texto-escuro);background:var(--fundo-claro);line-height:1.6}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--verde-destaque);outline-offset:3px}
+
+  /* Topo (troque pelo header/menu do seu site) */
+  .topo{background:var(--verde-escuro);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .topo .logo{color:var(--verde-destaque);font-weight:800;font-size:1.3rem;text-decoration:none}
+  .topo nav{display:flex;gap:20px;flex-wrap:wrap}
+  .topo nav a{color:var(--texto-claro);text-decoration:none;font-weight:500;font-size:.95rem}
+  .topo nav a:hover,.topo nav a.ativo{color:var(--verde-destaque)}
+
+  /* Banner da página */
+  .hero{background:linear-gradient(135deg,var(--verde-escuro),var(--verde-medio));color:var(--texto-claro);padding:72px 24px 80px;text-align:center}
+  .hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;margin-bottom:14px}
+  .hero p{max-width:680px;margin:0 auto;font-size:1.1rem;opacity:.92}
+
+  .container{max-width:1080px;margin:0 auto;padding:0 24px}
+  section{padding:64px 0}
+  h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--verde-escuro);margin-bottom:10px}
+  .sub{max-width:640px;margin-bottom:32px;color:#475569}
+
+  /* Cards de categorias */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+  .card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 6px 20px rgba(12,74,46,.10);border-top:5px solid var(--verde-destaque);transition:transform .25s,box-shadow .25s}
+  .card:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(12,74,46,.18)}
+  .card .icone{font-size:2rem;margin-bottom:10px}
+  .card h3{color:var(--verde-escuro);font-size:1.15rem;margin-bottom:6px}
+  .card p{font-size:.95rem;color:#475569}
+
+  /* Documentos */
+  .docs{background:#fff}
+  .abas{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+  .aba{border:2px solid var(--verde-medio);background:transparent;color:var(--verde-medio);font:inherit;font-weight:700;padding:8px 20px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
+  .aba:hover{background:#e6f4dc}
+  .aba[aria-selected="true"]{background:var(--verde-escuro);border-color:var(--verde-escuro);color:var(--verde-destaque)}
+  .painel{display:none}
+  .painel.ativo{display:block;animation:entra .35s ease}
+  @keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .lista{list-style:none;display:grid;gap:12px}
+  .item{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--fundo-claro);border-left:5px solid var(--verde-medio);border-radius:12px;padding:16px 20px}
+  .item strong{display:block;color:var(--verde-escuro)}
+  .item small{color:#64748b}
+  .btn{background:var(--verde-destaque);color:var(--verde-escuro);font-weight:800;text-decoration:none;padding:9px 20px;border-radius:999px;font-size:.9rem;transition:background .2s,transform .2s;white-space:nowrap}
+  .btn:hover{background:var(--verde-destaque-hover);transform:scale(1.04)}
+
+  /* Contato */
+  .contato{background:var(--verde-escuro);color:var(--texto-claro);text-align:center}
+  .contato h2{color:var(--verde-destaque)}
+  .contato p{max-width:560px;margin:0 auto 24px;opacity:.92}
+
+  footer{background:#08331f;color:var(--texto-claro);text-align:center;padding:22px;font-size:.9rem}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- Substitua este topo pelo header/menu do seu site -->
+<header class="topo">
+  <a class="logo" href="index.html">EcoAmparo</a>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="quem-somos.html">Quem somos</a>
+    <a href="coleta-seletiva.html">Coleta seletiva</a>
+    <a href="projetos.html">Projetos</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="transparencia.html" class="ativo">Transparência</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Transparência</h1>
+  <p>Aqui você acompanha como a EcoAmparo trabalha: documentos, contratos e prestações de contas abertos para consulta.</p>
+</div>
+
+<section>
+  <div class="container">
+    <h2>O que você encontra nesta página</h2>
+    <p class="sub">Todos os documentos podem ser baixados gratuitamente.</p>
+    <div class="cards">
+      <article class="card">
+        <div class="icone">📄</div>
+        <h3>Documentos institucionais</h3>
+        <p>Estatuto, atas de assembleia e registros da cooperativa.</p>
+      </article>
+      <article class="card">
+        <div class="icone">🤝</div>
+        <h3>Contratos e convênios</h3>
+        <p>Contratos firmados com o poder público e parceiros.</p>
+      </article>
+      <article class="card">
+        <div class="icone">📊</div>
+        <h3>Prestação de contas</h3>
+        <p>Balanços e relatórios financeiros de cada ano.</p>
+      </article>
+      <article class="card">
+        <div class="icone">♻️</div>
+        <h3>Relatórios de atividades</h3>
+        <p>Toneladas coletadas, renda gerada e ações realizadas.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="docs" id="documentos">
+  <div class="container">
+    <h2>Documentos por ano</h2>
+    <p class="sub">Escolha o ano para ver os arquivos disponíveis.</p>
+
+    <div class="abas" role="tablist" aria-label="Anos">
+      <button class="aba" role="tab" aria-selected="true" data-alvo="p2026">2026</button>
+      <button class="aba" role="tab" aria-selected="false" data-alvo="p2025">2025</button>
+      <button class="aba" role="tab" aria-selected="false" data-alvo="p2024">2024</button>
+    </div>
+
+    <!-- Para cada documento: troque o título, a descrição e o href="#" pelo caminho do PDF (ex.: docs/balanco-2026.pdf) -->
+    <div class="painel ativo" id="p2026" role="tabpanel">
+      <ul class="lista">
+        <li class="item">
+          <div><strong>Balanço financeiro 2026</strong><small>Prestação de contas · PDF</small></div>
+          <a class="btn" href="#" download>Baixar</a>
+        </li>
+        <li class="item">
+          <div><strong>Relatório de atividades 2026</strong><small>Resultados do ano · PDF</small></div>
+          <a class="btn" href="#" download>Baixar</a>
+        </li>
+        <li class="item">
+          <div><strong>Ata de assembleia geral</strong><small>Documento institucional · PDF</small></div>
+          <a class="btn" href="#" download>Baixar</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="painel" id="p2025" role="tabpanel">
+      <ul class="lista">
+        <li class="item">
+          <div><strong>Balanço financeiro 2025</strong><small>Prestação de contas · PDF</small></div>
+          <a class="btn" href="#" download>Baixar</a>
+        </li>
+        <li class="item">
+          <div><strong>Relatório de atividades 2025</strong><small>Resultados do ano · PDF</small></div>
+          <a class="btn" href="#" download>Baixar</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="painel" id="p2024" role="tabpanel">
+      <ul class="lista">
+        <li class="item">
+          <div><strong>Balanço financeiro 2024</strong><small>Prestação de contas · PDF</small></div>
+          <a class="btn" href="#" download>Baixar</a>
+        </li>
+        <li class="item">
+          <div><strong>Contrato de parceria</strong><small>Contratos e convênios · PDF</small></div>
+          <a class="btn" href="#" download>Baixar</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="contato">
+  <div class="container">
+    <h2>Precisa de outra informação?</h2>
+    <p>Se não encontrou o documento que procura, fale com a gente e enviaremos o que for necessário.</p>
+    <a class="btn" href="contato.html">Fale conosco</a>
+  </div>
+</section>
+
+<!-- Substitua pelo footer do seu site -->
+<footer>© 2026 EcoAmparo · Cooperativa de reciclados de Amparo</footer>
+
+<script>
+  const abas = document.querySelectorAll('.aba');
+  const paineis = document.querySelectorAll('.painel');
+  abas.forEach(aba => {
+    aba.addEventListener('click', () => {
+      abas.forEach(a => a.setAttribute('aria-selected', a === aba));
+      paineis.forEach(p => p.classList.toggle('ativo', p.id === aba.dataset.alvo));
+    });
+  });
+</script>
+</body>
+</html>

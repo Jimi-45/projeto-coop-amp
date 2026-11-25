@@ -474,7 +474,7 @@ header {
 .qs__botao {
     display: inline-block;
     padding: 0.8rem 1.5rem;
-    background: var(--qs-amarelo);
+    background: var(--verde-destaque);
     color: var(--qs-verde-escuro);
     font-weight: 500;
     text-decoration: none;
@@ -483,7 +483,7 @@ header {
 }
 
 .qs__botao:hover {
-    background: #ffc926;
+    background: var(--verde-destaque-hover);
     transform: translateY(-2px);
 }
 

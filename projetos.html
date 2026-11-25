@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projetos e Parcerias | Eco Amparo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-escuro: #0c4a2e;
+    --verde-medio: #156e45;
+    --verde-destaque: #9ce62a;
+    --verde-destaque-hover: #86cc1e;
+    --texto-claro: #f4faf6;
+    --texto-escuro: #1e293b;
+    --fundo-pagina: #f3f7f4;
+    --borda: #d6e4db;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--texto-escuro);
+    background: var(--fundo-pagina);
+    line-height: 1.65;
+  }
+
+  /* ===== COLE AQUI O SEU HEADER / MENU DO SITE ===== */
+
+  /* Topo da página */
+  .topo {
+    background: var(--verde-escuro);
+    color: var(--texto-claro);
+    padding: 72px 24px 96px;
+  }
+  .topo-conteudo { max-width: 960px; margin: 0 auto; }
+  .topo h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.12;
+    max-width: 18ch;
+  }
+  .topo p {
+    margin-top: 20px;
+    max-width: 62ch;
+    font-size: 1.08rem;
+    opacity: .92;
+  }
+  .topo .barra {
+    width: 72px; height: 6px; border-radius: 3px;
+    background: var(--verde-destaque);
+    margin-top: 28px;
+  }
+
+  /* Linha do tempo */
+  .projetos {
+    max-width: 960px;
+    margin: -48px auto 0;
+    padding: 0 24px 80px;
+    position: relative;
+  }
+  .projetos::before {
+    content: "";
+    position: absolute;
+    left: 112px; top: 0; bottom: 80px;
+    width: 3px;
+    background: var(--borda);
+  }
+  .projeto {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 48px;
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .ano {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--verde-medio);
+    padding-top: 30px;
+    text-align: right;
+  }
+  .projeto::before {
+    content: "";
+    position: absolute;
+    left: 99px; top: 38px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--verde-destaque);
+    border: 4px solid var(--fundo-pagina);
+    box-shadow: 0 0 0 2px var(--verde-medio);
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--borda);
+    border-radius: 16px;
+    padding: 30px 32px;
+    box-shadow: 0 6px 24px rgba(12, 74, 46, .07);
+  }
+  .card h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--verde-escuro);
+    line-height: 1.3;
+  }
+  .card .resumo { margin-top: 12px; }
+
+  .vigencia {
+    display: inline-block;
+    margin-top: 16px;
+    background: var(--verde-destaque);
+    color: var(--verde-escuro);
+    font-weight: 700;
+    font-size: .9rem;
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+
+  /* Detalhes abrem e fecham ao clicar */
+  details { margin-top: 20px; border-top: 1px solid var(--borda); }
+  summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 16px 0 4px;
+    font-weight: 700;
+    color: var(--verde-medio);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+";
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform .25s ease;
+  }
+  details[open] summary::after { transform: rotate(45deg); }
+  summary:focus-visible { outline: 3px solid var(--verde-destaque); outline-offset: 4px; border-radius: 4px; }
+
+  dl { margin-top: 12px; display: grid; gap: 14px; }
+  dl div { display: grid; grid-template-columns: 150px 1fr; gap: 12px; }
+  dt { font-weight: 700; color: var(--verde-escuro); }
+  dd { word-break: break-word; }
+  dd.destaque { font-weight: 800; color: var(--verde-medio); }
+
+  .conteudo-detalhes { animation: abrir .3s ease; }
+  @keyframes abrir { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+  /* ===== COLE AQUI O SEU FOOTER ===== */
+
+  @media (max-width: 720px) {
+    .projetos::before { left: 11px; }
+    .projeto { grid-template-columns: 1fr; gap: 0; padding-left: 36px; }
+    .projeto::before { left: 3px; top: 8px; }
+    .ano { text-align: left; padding: 0 0 8px; font-size: 1.2rem; }
+    .card { padding: 24px 20px; }
+    dl div { grid-template-columns: 1fr; gap: 2px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .conteudo-detalhes { animation: none; }
+    summary::after { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== COLE AQUI O SEU HEADER / MENU DO SITE ===== -->
+
+<header class="topo">
+  <div class="topo-conteudo">
+    <h1>Projetos e Parcerias Realizadas</h1>
+    <p>Ao longo dos últimos anos, a Cooperativa de Trabalho Eco Amparo consolidou parcerias estratégicas com o poder público e a iniciativa privada para fortalecer a inclusão social e ampliar a eficiência da coleta seletiva na região.</p>
+    <div class="barra"></div>
+  </div>
+</header>
+
+<main class="projetos">
+
+  <article class="projeto">
+    <div class="ano">2021</div>
+    <div class="card">
+      <h2>Projeto Segunda Chance</h2>
+      <p class="resumo">Iniciativa voltada ao encaminhamento de pessoas em situação de vulnerabilidade social para atuação na Cooperativa Eco Amparo, aliada ao direcionamento integral dos materiais da coleta seletiva do município para triagem.</p>
+      <span class="vigencia">Vigência: 24 meses</span>
+      <details>
+        <summary>Ver detalhes</summary>
+        <dl class="conteudo-detalhes">
+          <div><dt>Pastas gestoras</dt><dd>Fundo Social de Solidariedade de Amparo, Secretaria de Desenvolvimento Social e Cidadania e Secretaria de Meio Ambiente.</dd></div>
+          <div><dt>Início</dt><dd>26 de fevereiro de 2021</dd></div>
+        </dl>
+      </details>
+    </div>
+  </article>
+
+  <article class="projeto">
+    <div class="ano">2022</div>
+    <div class="card">
+      <h2>Contrato nº 153/2022 – Apoio Operacional e Infraestrutura</h2>
+      <p class="resumo">Contratação direta (Processo Licitatório nº 8253/2022 – Dispensa de Licitação nº 70/2022) de cooperativa sem fins lucrativos formada exclusivamente por pessoas de baixa renda ou em vulnerabilidade social de Amparo e região.</p>
+      <span class="vigencia">06/06/2022 a 05/06/2024</span>
+      <details>
+        <summary>Ver detalhes</summary>
+        <dl class="conteudo-detalhes">
+          <div><dt>Contratante</dt><dd>Prefeitura Municipal de Amparo (CNPJ: 43.465.459/0001-73)</dd></div>
+          <div><dt>Contratada</dt><dd>Cooperativa de Trabalho dos Catadores de Materiais Recicláveis Eco Amparo (CNPJ: 30.706.617/0001-98)</dd></div>
+          <div><dt>Pasta gestora</dt><dd>Secretaria de Desenvolvimento Social e Cidadania</dd></div>
+          <div><dt>Escopo</dt><dd>Custeio da locação do galpão do centro de triagem e despesas essenciais, como água, energia elétrica e IPTU.</dd></div>
+          <div><dt>Vigência</dt><dd>24 meses (de 06/06/2022 a 05/06/2024)</dd></div>
+          <div><dt>Valor global</dt><dd class="destaque">R$ 236.400,00</dd></div>
+        </dl>
+      </details>
+    </div>
+  </article>
+
+  <article class="projeto">
+    <div class="ano">2022</div>
+    <div class="card">
+      <h2>Projeto Unurus – Modernização de Equipamentos</h2>
+      <p class="resumo">Parceria com a iniciativa privada para cessão, em regime de comodato, de uma prensa hidráulica de 15 toneladas à Cooperativa Eco Amparo, com compensação via créditos de logística reversa.</p>
+      <span class="vigencia">Vigência: 24 meses</span>
+      <details>
+        <summary>Ver detalhes</summary>
+        <dl class="conteudo-detalhes">
+          <div><dt>Contratante</dt><dd>SP Eco Ambiental Mogi Guaçu Ltda. (CNPJ: 18.960.355/0001-98)</dd></div>
+          <div><dt>Contratada</dt><dd>Cooperativa de Trabalho dos Catadores de Materiais Recicláveis Eco Amparo (CNPJ: 30.706.617/0001-98)</dd></div>
+          <div><dt>Início</dt><dd>1º de dezembro de 2022</dd></div>
+        </dl>
+      </details>
+    </div>
+  </article>
+
+  <article class="projeto">
+    <div class="ano">2024</div>
+    <div class="card">
+      <h2>Contrato nº 174/2024 – Gestão Integrada da Coleta Seletiva</h2>
+      <p class="resumo">Contratação (Processo Licitatório nº 1795/2024) para execução completa das etapas de recebimento, processamento, triagem, classificação, armazenamento, comercialização e destinação final adequada dos resíduos recicláveis de Amparo/SP e região, seguindo rigorosas normas técnicas, ambientais, de segurança e de saúde pública.</p>
+      <span class="vigencia">23/08/2024 a 22/08/2025</span>
+      <details>
+        <summary>Ver detalhes</summary>
+        <dl class="conteudo-detalhes">
+          <div><dt>Contratante</dt><dd>Prefeitura Municipal de Amparo (CNPJ: 43.465.459/0001-73)</dd></div>
+          <div><dt>Contratada</dt><dd>Cooperativa de Trabalho dos Catadores de Materiais Recicláveis Eco Amparo (CNPJ: 30.706.617/0001-98)</dd></div>
+          <div><dt>Pasta gestora</dt><dd>Secretaria de Meio Ambiente</dd></div>
+          <div><dt>Escopo</dt><dd>Manutenção do pagamento da locação do galpão do centro de triagem e despesas operacionais (água, energia, IPTU, entre outras).</dd></div>
+          <div><dt>Vigência</dt><dd>12 meses (de 23/08/2024 a 22/08/2025)</dd></div>
+          <div><dt>Valor global</dt><dd class="destaque">R$ 118.200,00</dd></div>
+        </dl>
+      </details>
+    </div>
+  </article>
+
+</main>
+
+<!-- ===== COLE AQUI O SEU FOOTER ===== -->
+
+</body>
+</html>
