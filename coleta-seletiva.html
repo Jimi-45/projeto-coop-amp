@@ -11,410 +11,550 @@
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 
 <style>
-/* ===== Paleta do site EcoAmparo ===== */
-:root {
-  --verde-escuro: #0c4a2e;
-  --verde-medio: #156e45;
-  --verde-destaque: #9ce62a;
-  --verde-destaque-hover: #86cc1e;
-  --texto-claro: #f4f8f1;
-  --texto-escuro: #1e293b;
-  --fundo-menu: #0c4a2e;
-  --fundo-claro: #f6f3ea;
-  --laranja: #e8710a;
-  --laranja-claro: #fff1e0;
-  --raio: 14px;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  color: var(--texto-escuro);
-  background: var(--fundo-claro);
-  line-height: 1.7;
-  font-size: 1.05rem;
-}
-img { max-width: 100%; display: block; }
-a { color: inherit; }
-:focus-visible { outline: 3px solid var(--verde-destaque); outline-offset: 3px; }
-
-.container { width: min(1080px, 92%); margin-inline: auto; }
-.texto { max-width: 68ch; }
-
-/* ===== Cabeçalho / menu ===== */
-.topo {
-  background: var(--fundo-menu);
-  color: var(--texto-claro);
-  position: sticky;
-  top: 0;
-  z-index: 50;
-}
-.topo .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  min-height: 72px;
-}
-.logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 800; font-size: 1.2rem; }
-.logo img { height: 44px; width: auto; }
-.logo span { color: var(--verde-destaque); }
-.menu { display: flex; gap: .4rem; list-style: none; }
-.menu a {
-  display: block;
-  padding: .55rem .95rem;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: .97rem;
-  transition: background .2s, color .2s;
-}
-.menu a:hover { background: rgba(255,255,255,.12); }
-.menu a[aria-current="page"] { background: var(--verde-destaque); color: var(--verde-escuro); }
-.menu-btn {
-  display: none;
-  background: none;
-  border: 2px solid var(--texto-claro);
-  color: var(--texto-claro);
-  border-radius: 10px;
-  padding: .4rem .7rem;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-/* ===== Abertura da página ===== */
-.abertura {
-  background: var(--verde-escuro);
-  color: var(--texto-claro);
-  padding: clamp(3rem, 8vw, 6rem) 0 clamp(4rem, 9vw, 7rem);
-  position: relative;
-}
-.abertura::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 -1px 0;
-  height: 48px;
-  background: var(--fundo-claro);
-  clip-path: ellipse(60% 100% at 50% 100%);
-}
-.abertura h1 {
-  font-size: clamp(2rem, 5.2vw, 3.6rem);
-  line-height: 1.12;
-  font-weight: 800;
-  max-width: 18ch;
-  letter-spacing: -.02em;
-  margin-bottom: 1.4rem;
-}
-.abertura p { max-width: 60ch; font-size: 1.15rem; opacity: .95; }
-.abertura .atalhos { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 2rem; }
-.btn {
-  display: inline-block;
-  padding: .8rem 1.5rem;
-  border-radius: 999px;
-  font-weight: 700;
-  text-decoration: none;
-  background: var(--verde-destaque);
-  color: var(--verde-escuro);
-  transition: background .2s, transform .2s;
-}
-.btn:hover { background: var(--verde-destaque-hover); transform: translateY(-2px); }
-.btn.contorno { background: transparent; color: var(--texto-claro); border: 2px solid rgba(255,255,255,.55); }
-.btn.contorno:hover { background: rgba(255,255,255,.12); }
-
-/* ===== Seções ===== */
-section.bloco { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
-section.bloco h2 {
-  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
-  line-height: 1.2;
-  color: var(--verde-escuro);
-  margin-bottom: 1rem;
-  letter-spacing: -.01em;
-}
-section.bloco p + p { margin-top: 1rem; }
-
-/* ===== Gravuras (imagens) ===== */
-.gravura {
-  margin-top: 2rem;
-  border-radius: var(--raio);
-  overflow: hidden;
-  background: transparent;
-  position: relative;
-  width: fit-content;
-  max-width: 100%;
-  box-shadow: 0 10px 30px rgba(12,74,46,.14);
-}
-.gravura img { 
-  width: 600px; 
-  max-width: 100%; 
-  height: auto; 
-  cursor: zoom-in; 
-}
-
-/* ===== Materiais recicláveis ===== */
-.materiais {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin-top: 1.6rem;
-  list-style: none;
-}
-.materiais li {
-  background: #fff;
-  border-radius: var(--raio);
-  padding: 1.2rem 1rem;
-  text-align: center;
-  font-weight: 700;
-  color: var(--verde-escuro);
-  border-bottom: 5px solid var(--cor);
-}
-.materiais li span { display: block; font-size: 2rem; line-height: 1.3; }
-.materiais .plastico { --cor: #d6362b; }
-.materiais .vidro    { --cor: #2f9e44; }
-.materiais .papel    { --cor: #2f6fd6; }
-.materiais .metal    { --cor: #e8b90a; }
-
-.passo-a-passo {
-  margin-top: 1.4rem;
-  background: #fff;
-  border-radius: var(--raio);
-  padding: 1.4rem 1.6rem;
-  border-left: 6px solid var(--verde-destaque);
-}
-
-/* ===== Dica do óleo ===== */
-.dica {
-  background: var(--verde-medio);
-  color: var(--texto-claro);
-  border-radius: var(--raio);
-  padding: clamp(1.5rem, 4vw, 2.4rem);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 1.4rem;
-  align-items: center;
-}
-.dica .icone { font-size: 3rem; line-height: 1; }
-.dica h3 { font-size: 1.3rem; margin-bottom: .4rem; }
-.dica strong { color: var(--verde-destaque); }
-
-/* ===== Não reciclável ===== */
-.nao-recicla {
-  background: var(--laranja-claro);
-  border: 2px solid var(--laranja);
-  border-radius: var(--raio);
-  padding: clamp(1.4rem, 4vw, 2.2rem);
-}
-.nao-recicla h2 { color: #9a4a00; }
-.lista-x { list-style: none; margin-top: 1rem; display: grid; gap: .9rem; }
-.lista-x li { padding-left: 2rem; position: relative; }
-.lista-x li::before {
-  content: "✕";
-  position: absolute;
-  left: 0;
-  top: .1em;
-  width: 1.35rem;
-  height: 1.35rem;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--laranja);
-  color: #fff;
-  font-size: .75rem;
-  font-weight: 800;
-}
-.lista-x small { display: block; color: #6b4a1f; font-size: .95rem; }
-
-/* ===== Calendário da coleta ===== */
-.aviso-dia {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  background: #fff;
-  border-radius: var(--raio);
-  padding: 1.4rem 1.6rem;
-  margin-top: 1.2rem;
-  box-shadow: 0 6px 18px rgba(12,74,46,.08);
-}
-.aviso-dia .icone { font-size: 2rem; line-height: 1; }
-
-/* ===== Resíduos especiais ===== */
-.especiais { background: var(--verde-escuro); color: var(--texto-claro); }
-.especiais h2 { color: #fff; }
-.especiais .atencao { color: var(--verde-destaque); font-weight: 800; }
-.grade-especiais {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: .9rem;
-  margin: 1.6rem 0 2.4rem;
-}
-.grade-especiais li {
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: var(--raio);
-  padding: 1rem 1.1rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: .7rem;
-}
-.especiais h3 { font-size: 1.25rem; margin-bottom: 1rem; }
-
-details.devolver {
-  background: #fff;
-  color: var(--texto-escuro);
-  border-radius: var(--raio);
-  margin-bottom: .8rem;
-  overflow: hidden;
-}
-details.devolver summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 1.1rem 1.3rem;
-  font-weight: 700;
-  color: var(--verde-escuro);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-}
-details.devolver summary::-webkit-details-marker { display: none; }
-details.devolver summary::after {
-  content: "+";
-  font-size: 1.6rem;
-  line-height: 1;
-  transition: transform .25s;
-  color: var(--verde-medio);
-}
-details.devolver[open] summary::after { transform: rotate(45deg); }
-details.devolver .conteudo { padding: 0 1.3rem 1.2rem; }
-
-/* ===== Ponto Ecológico ===== */
-.ponto {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 2rem;
-  align-items: start;
-}
-.ponto .gravura { margin-top: 0; }
-.ficha {
-  background: #fff;
-  border-radius: var(--raio);
-  padding: 1.6rem;
-  margin-top: 1.4rem;
-  box-shadow: 0 6px 18px rgba(12,74,46,.08);
-}
-.ficha dl { display: grid; gap: 1rem; }
-.ficha dt { font-weight: 800; color: var(--verde-medio); font-size: .95rem; }
-.ficha dd { margin-top: .1rem; }
-.recebe { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.2rem; }
-.recebe li {
-  background: var(--verde-escuro);
-  color: var(--texto-claro);
-  padding: .35rem .9rem;
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: .92rem;
-}
-
-/* ===== Chamada final ===== */
-.final {
-  background: var(--verde-medio);
-  color: var(--texto-claro);
-  text-align: center;
-  padding: clamp(3rem, 7vw, 5rem) 0;
-}
-.final h2 { color: #fff; font-size: clamp(1.7rem, 4vw, 2.6rem); margin-bottom: .8rem; }
-.final p { max-width: 52ch; margin: 0 auto 1.6rem; }
-
-/* ===== Rodapé ===== */
-.rodape { background: var(--verde-escuro); color: var(--texto-claro); padding: 2rem 0; font-size: .95rem; }
-.rodape .container { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; }
-.rodape a { color: var(--verde-destaque); }
-
-/* ===== Lightbox ===== */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.88);
-  display: none;
-  place-items: center;
-  z-index: 100;
-  padding: 1.5rem;
-}
-.lightbox.aberto { display: grid; }
-.lightbox img { max-height: 90vh; max-width: 100%; width: auto; border-radius: 10px; }
-.lightbox button {
-  position: absolute;
-  top: 1rem;
-  right: 1.2rem;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: none;
-  background: #fff;
-  color: var(--verde-escuro);
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1;
-  cursor: pointer;
-}
-
-/* ===== Animação de entrada (só na abertura) ===== */
-@keyframes entrar { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-.abertura .container > * { animation: entrar .7s ease both; }
-.abertura .container > *:nth-child(2) { animation-delay: .12s; }
-.abertura .container > *:nth-child(3) { animation-delay: .24s; }
-
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-}
-
-/* ===== Responsivo ===== */
-@media (max-width: 860px) {
-  .menu-btn { display: block; }
-  .menu {
-    display: none;
-    position: absolute;
-    top: 72px;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    background: var(--fundo-menu);
-    padding: .6rem 4% 1.2rem;
+  /* ===== Paleta do site EcoAmparo ===== */
+  :root {
+    --verde-escuro: #0c4a2e;
+    --verde-medio: #156e45;
+    --verde-destaque: #9ce62a;
+    --verde-destaque-hover: #86cc1e;
+    --texto-claro: #f4f8f1;
+    --texto-escuro: #1e293b;
+    --fundo-menu: #0c4a2e;
+    --fundo-claro: #f6f3ea;
+    --laranja: #e8710a;
+    --laranja-claro: #fff1e0;
+    --raio: 14px;
   }
-  .menu.aberto { display: flex; }
-  .materiais { grid-template-columns: repeat(2, 1fr); }
-  .grade-especiais { grid-template-columns: repeat(2, 1fr); }
-  .ponto { grid-template-columns: 1fr; }
-}
-@media (max-width: 520px) {
-  .dica { grid-template-columns: 1fr; }
-  .grade-especiais { grid-template-columns: 1fr; }
-}
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--texto-escuro);
+    background: var(--fundo-claro);
+    line-height: 1.7;
+    font-size: 1.05rem;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--verde-destaque); outline-offset: 3px; }
+
+  .container { width: min(1240px, 95%); margin-inline: auto; }
+  .texto { max-width: 68ch; }
+
+  /* ===== Cabeçalho / menu ===== */
+  .topo {
+    background: var(--fundo-menu);
+    color: var(--texto-claro);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .topo .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 72px;
+  }
+
+  .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 800; font-size: 1.2rem; }
+  .logo img { height: 44px; width: auto; }
+  .logo span { color: var(--verde-destaque); }
+  .menu { display: flex; align-items: center; gap: .25rem; list-style: none; }         
+  .menu a {
+    display: block;
+    white-space: nowrap; /* Impede que o texto quebre em duas linhas */
+    padding: .55rem .95rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: .97rem;
+    transition: background .2s, color .2s;
+    padding: .5rem .75rem;
+    font-size: .9rem;
+  }
+
+  .menu a:hover { background: rgba(255,255,255,.12); }
+  .menu a[aria-current="page"] { background: var(--verde-destaque); color: var(--verde-escuro); }
+  .menu-btn {
+    display: none;
+    background: none;
+    border: 2px solid var(--texto-claro);
+    color: var(--texto-claro);
+    border-radius: 10px;
+    padding: .4rem .7rem;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* ===== Abertura da página ===== */
+  .abertura {
+    background: var(--verde-escuro);
+    color: var(--texto-claro);
+    padding: clamp(3rem, 8vw, 6rem) 0 clamp(4rem, 9vw, 7rem);
+    position: relative;
+  }
+  .abertura::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 -1px 0;
+    height: 48px;
+    background: var(--fundo-claro);
+    clip-path: ellipse(60% 100% at 50% 100%);
+  }
+  .abertura h1 {
+    font-size: clamp(2rem, 5.2vw, 3.6rem);
+    line-height: 1.12;
+    font-weight: 800;
+    max-width: 18ch;
+    letter-spacing: -.02em;
+    margin-bottom: 1.4rem;
+  }
+  .abertura p { max-width: 60ch; font-size: 1.15rem; opacity: .95; }
+  .abertura .atalhos { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 2rem; }
+  .btn {
+    display: inline-block;
+    padding: .8rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+    background: var(--verde-destaque);
+    color: var(--verde-escuro);
+    transition: background .2s, transform .2s;
+  }
+  .btn:hover { background: var(--verde-destaque-hover); transform: translateY(-2px); }
+  .btn.contorno { background: transparent; color: var(--texto-claro); border: 2px solid rgba(255,255,255,.55); }
+  .btn.contorno:hover { background: rgba(255,255,255,.12); }
+
+  /* ===== Seções ===== */
+  section.bloco { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
+  section.bloco h2 {
+    font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+    line-height: 1.2;
+    color: var(--verde-escuro);
+    margin-bottom: 1rem;
+    letter-spacing: -.01em;
+  }
+  section.bloco p + p { margin-top: 1rem; }
+
+  /* ===== Gravuras (imagens) ===== */
+  .gravura {
+    margin-top: 2rem;
+    border-radius: var(--raio);
+    overflow: hidden;
+    background: transparent;
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    box-shadow: 0 10px 30px rgba(12,74,46,.14);
+  }
+  .gravura img { 
+    width: 600px; 
+    max-width: 100%; 
+    height: auto; 
+    cursor: zoom-in; 
+  }
+
+  /* ===== Materiais recicláveis ===== */
+  .materiais {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1.6rem;
+    list-style: none;
+  }
+  .materiais li {
+    background: #fff;
+    border-radius: var(--raio);
+    padding: 1.2rem 1rem;
+    text-align: center;
+    font-weight: 700;
+    color: var(--verde-escuro);
+    border-bottom: 5px solid var(--cor);
+  }
+  .materiais li span { display: block; font-size: 2rem; line-height: 1.3; }
+  .materiais .plastico { --cor: #d6362b; }
+  .materiais .vidro    { --cor: #2f9e44; }
+  .materiais .papel    { --cor: #2f6fd6; }
+  .materiais .metal    { --cor: #e8b90a; }
+
+  .passo-a-passo {
+    margin-top: 1.4rem;
+    background: #fff;
+    border-radius: var(--raio);
+    padding: 1.4rem 1.6rem;
+    border-left: 6px solid var(--verde-destaque);
+  }
+
+  /* ===== Dica do óleo ===== */
+  .dica {
+    background: var(--verde-medio);
+    color: var(--texto-claro);
+    border-radius: var(--raio);
+    padding: clamp(1.5rem, 4vw, 2.4rem);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.4rem;
+    align-items: center;
+  }
+  .dica .icone { font-size: 3rem; line-height: 1; }
+  .dica h3 { font-size: 1.3rem; margin-bottom: .4rem; }
+  .dica strong { color: var(--verde-destaque); }
+
+  /* ===== Não reciclável ===== */
+  .nao-recicla {
+    background: var(--laranja-claro);
+    border: 2px solid var(--laranja);
+    border-radius: var(--raio);
+    padding: clamp(1.4rem, 4vw, 2.2rem);
+  }
+  .nao-recicla h2 { color: #9a4a00; }
+  .lista-x { list-style: none; margin-top: 1rem; display: grid; gap: .9rem; }
+  .lista-x li { padding-left: 2rem; position: relative; }
+  .lista-x li::before {
+    content: "✕";
+    position: absolute;
+    left: 0;
+    top: .1em;
+    width: 1.35rem;
+    height: 1.35rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--laranja);
+    color: #fff;
+    font-size: .75rem;
+    font-weight: 800;
+  }
+  .lista-x small { display: block; color: #6b4a1f; font-size: .95rem; }
+
+  /* ===== Calendário da coleta ===== */
+  .aviso-dia {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: #fff;
+    border-radius: var(--raio);
+    padding: 1.4rem 1.6rem;
+    margin-top: 1.2rem;
+    box-shadow: 0 6px 18px rgba(12,74,46,.08);
+  }
+  .aviso-dia .icone { font-size: 2rem; line-height: 1; }
+
+  /* ===== Resíduos especiais ===== */
+  .especiais { background: var(--verde-escuro); color: var(--texto-claro); }
+  .especiais h2 { color: #fff; }
+  .especiais .atencao { color: var(--verde-destaque); font-weight: 800; }
+  .grade-especiais {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .9rem;
+    margin: 1.6rem 0 2.4rem;
+  }
+  .grade-especiais li {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: var(--raio);
+    padding: 1rem 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+  }
+  .especiais h3 { font-size: 1.25rem; margin-bottom: 1rem; }
+
+  details.devolver {
+    background: #fff;
+    color: var(--texto-escuro);
+    border-radius: var(--raio);
+    margin-bottom: .8rem;
+    overflow: hidden;
+  }
+  details.devolver summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1.1rem 1.3rem;
+    font-weight: 700;
+    color: var(--verde-escuro);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  details.devolver summary::-webkit-details-marker { display: none; }
+  details.devolver summary::after {
+    content: "+";
+    font-size: 1.6rem;
+    line-height: 1;
+    transition: transform .25s;
+    color: var(--verde-medio);
+  }
+  details.devolver[open] summary::after { transform: rotate(45deg); }
+  details.devolver .conteudo { padding: 0 1.3rem 1.2rem; }
+
+  /* ===== Ponto Ecológico ===== */
+  .ponto {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  .ponto .gravura { margin-top: 0; }
+  .ficha {
+    background: #fff;
+    border-radius: var(--raio);
+    padding: 1.6rem;
+    margin-top: 1.4rem;
+    box-shadow: 0 6px 18px rgba(12,74,46,.08);
+  }
+  .ficha dl { display: grid; gap: 1rem; }
+  .ficha dt { font-weight: 800; color: var(--verde-medio); font-size: .95rem; }
+  .ficha dd { margin-top: .1rem; }
+  .recebe { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.2rem; }
+  .recebe li {
+    background: var(--verde-escuro);
+    color: var(--texto-claro);
+    padding: .35rem .9rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: .92rem;
+  }
+
+  /* ===== Chamada final ===== */
+  .final {
+    background: var(--verde-medio);
+    color: var(--texto-claro);
+    text-align: center;
+    padding: clamp(3rem, 7vw, 5rem) 0;
+  }
+  .final h2 { color: #fff; font-size: clamp(1.7rem, 4vw, 2.6rem); margin-bottom: .8rem; }
+  .final p { max-width: 52ch; margin: 0 auto 1.6rem; }
+
+  /* ===== FOOTER ===== */
+  .rodape {
+      background: var(--verde-escuro);
+      color: var(--texto-claro);
+      padding: 70px 20px 0;
+      border-top: 5px solid var(--verde-destaque);
+  }
+
+  .rodape__container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1.2fr;
+      gap: 40px;
+  }
+
+  .rodape__marca h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+  }
+
+  .rodape__marca h3 span { color: var(--verde-destaque); }
+
+  .rodape__marca p {
+      line-height: 1.7;
+      color: rgba(241, 245, 249, 0.8);
+      max-width: 340px;
+  }
+
+  .rodape h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      position: relative;
+      padding-bottom: 10px;
+  }
+
+  .rodape h4::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 36px;
+      height: 3px;
+      border-radius: 3px;
+      background: var(--verde-destaque);
+  }
+
+  .rodape ul { list-style: none; }
+  .rodape li { margin-bottom: 11px; }
+
+  .rodape a {
+      color: rgba(241, 245, 249, 0.85);
+      text-decoration: none;
+      transition: color .25s ease, padding-left .25s ease;
+  }
+
+  .rodape ul a:hover {
+      color: var(--verde-destaque);
+      padding-left: 6px;
+  }
+
+  .rodape__contato li {
+      display: flex;
+      gap: 10px;
+      line-height: 1.5;
+      color: rgba(241, 245, 249, 0.85);
+  }
+
+  .rodape__contato a:hover { color: var(--verde-destaque); }
+
+  /* Redes sociais */
+  .rodape__redes {
+      display: flex;
+      gap: 12px;
+      margin-top: 22px;
+  }
+
+  .rodape__redes a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .25s ease, transform .25s ease;
+  }
+
+  .rodape__redes a:hover {
+      background: var(--verde-destaque);
+      transform: translateY(-4px);
+  }
+
+  .rodape__redes svg {
+      width: 20px;
+      height: 20px;
+      fill: #fff;
+      transition: fill .25s ease;
+  }
+
+  .rodape__redes a:hover svg { fill: var(--verde-escuro); }
+
+  /* Linha de direitos */
+  .rodape__copy {
+      max-width: 1100px;
+      margin: 50px auto 0;
+      padding: 22px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      text-align: center;
+      font-size: .9rem;
+      color: rgba(241, 245, 249, 0.7);
+  }
+  
+  /* ===== Lightbox ===== */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.88);
+    display: none;
+    place-items: center;
+    z-index: 100;
+    padding: 1.5rem;
+  }
+  .lightbox.aberto { display: grid; }
+  .lightbox img { max-height: 90vh; max-width: 100%; width: auto; border-radius: 10px; }
+  .lightbox button {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    color: var(--verde-escuro);
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  /* ===== Animação de entrada (só na abertura) ===== */
+  @keyframes entrar { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  .abertura .container > * { animation: entrar .7s ease both; }
+  .abertura .container > *:nth-child(2) { animation-delay: .12s; }
+  .abertura .container > *:nth-child(3) { animation-delay: .24s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  /* ===== Responsivo ===== */
+  @media (max-width: 860px) {
+    .menu-btn { display: block; }
+    .menu {
+      display: none;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: var(--fundo-menu);
+      padding: .6rem 4% 1.2rem;
+    }
+    .menu.aberto { display: flex; }
+    .materiais { grid-template-columns: repeat(2, 1fr); }
+    .grade-especiais { grid-template-columns: repeat(2, 1fr); }
+    .ponto { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .dica { grid-template-columns: 1fr; }
+    .grade-especiais { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 800px) {
+    .rodape { padding-top: 50px; }
+    .rodape__container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 34px;
+    }
+    .rodape__marca p { margin: 0 auto; }
+    .rodape h4::after { left: 50%; transform: translateX(-50%); }
+    .rodape__contato li { justify-content: center; }
+    .rodape__redes { justify-content: center; }
+    .rodape ul a:hover { padding-left: 0; }
+  }
+
+  @media (max-width: 860px) {
+    .rodape__container { grid-template-columns: 1fr 1fr; }
+    .rodape__marca { grid-column: 1 / -1; }
+  }
+  @media (max-width: 520px) {
+    .rodape__container { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 
 <body>
 
-<!-- ===== Cabeçalho (ajuste os links para os arquivos do seu site) ===== -->
-<header class="topo">
-  <div class="container">
-    <a class="logo" href="index.html" aria-label="EcoAmparo – página inicial">
-      <img src="img/logo.jpg" alt="Logo Cooperativa EcoAmparo" onerror="this.style.display='none'">
-      <div>Eco<span>Amparo</span></div>
-    </a>
-    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
-    <ul class="menu" id="menu">
-      <li><a href="index.html">Início</a></li>
-      <li><a href="quem-somos.html">Quem somos</a></li>
-      <li><a href="nossa-historia.html">Nossa história</a></li>
-      <li><a href="coleta-seletiva.html" aria-current="page">Coleta seletiva</a></li>
-      <li><a href="index.html#contato">Contato</a></li>
-    </ul>
-  </div>
-</header>
+ <!-- ===== Cabeçalho ===== -->
+ <header class="topo">
+    <div class="container">
+      <a class="logo" href="index.html" aria-label="EcoAmparo – página inicial">
+        <img src="img/logo.jpg" alt="Logo Cooperativa EcoAmparo" onerror="this.style.display='none'">
+        <div>Eco<span>Amparo</span></div>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+      <ul class="menu" id="menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="quem-somos.html">Quem somos</a></li>
+        <li><a href="nossa-historia.html">Nossa história</a></li>
+        <li><a href="coleta-seletiva.html" aria-current="page">Coleta seletiva</a></li>
+        <li><a href="#">Educação Ambiental</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="transparencia.html">Transparência</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </div>
+  </header>
 
 <main>
 
@@ -591,11 +731,57 @@ details.devolver .conteudo { padding: 0 1.3rem 1.2rem; }
 
 </main>
 
-<!-- ===== Rodapé simples (troque pelo seu footer.html se preferir) ===== -->
-<footer class="rodape">
-  <div class="container">
-    <span>© Cooperativa EcoAmparo – Amparo/SP</span>
-    <span>Rua Suécia, 200 – Loteamento Nardini</span>
+<!-- ===== FOOTER ===== -->
+
+<footer class="rodape" id="contato">
+  <div class="rodape__container">
+
+  <div class="rodape__marca">
+      <h3>Eco<span>Amparo</span></h3>
+      <p>
+      Cooperativa de reciclados trabalhando pela conscientização da comunidade
+      e por um futuro mais verde e saudável em Amparo e região.
+      </p>
+      <div class="rodape__redes">
+      <!-- Troque o href pelos links reais -->
+      <a href="#" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.2 6a1.1 1.1 0 1 1-1.1 1.1A1.1 1.1 0 0 1 17.2 6z"/></svg>
+      </a>
+      <a href="#" aria-label="Facebook" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M13.5 22v-8.2h2.8l.5-3.3h-3.3V8.4c0-.9.4-1.7 1.8-1.7h1.6V3.9a20 20 0 0 0-2.4-.1c-2.4 0-4 1.5-4 4.1v2.6H7.7v3.3h2.8V22h3z"/></svg>
+      </a>
+      <a href="#" aria-label="WhatsApp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.2-.4.7-1.300a.5.5 0 0 0 0-.5c-.1-.1-.6-1.400-.8-1.900s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.200 5.200 5.200 0 0 0 1.100 2.800 11.900 11.900 0 0 0 4.600 4.100c1.700.7 2.400.8 3.200.7a2.700 2.700 0 0 0 1.800-1.300 2.200 2.200 0 0 0 .2-1.300c-.1-.1-.3-.2-.5-.3z"/></svg>
+      </a>
+      </div>
+  </div>
+
+  <div>
+      <h4>Navegue</h4>
+      <ul>
+      <li><a href="quem-somos.html">Quem somos</a></li>
+      <li><a href="nossa-historia.html">Nossa história</a></li>
+      <li><a href="coleta-seletiva.html">Coleta seletiva</a></li>
+      <li><a href="#">Educação Ambiental</a></li>
+      <li><a href="projetos.html">Projetos</a></li>
+      <li><a href="transparencia.html">Transparência</a></li>
+      </ul>
+  </div>
+
+  <div>
+      <h4>Contato</h4>
+      <ul class="rodape__contato">
+      <!-- Troque pelos dados reais da cooperativa -->
+      <li>📍 <span>Endereço da cooperativa, Amparo – SP</span></li>
+      <li>📞 <a href="tel:+5519000000000">(19) 0000-0000</a></li>
+      <li>✉️ <a href="mailto:contato@ecoamparo.com.br">contato@ecoamparo.com.br</a></li>
+      </ul>
+  </div>
+
+  </div>
+
+  <div class="rodape__copy">
+  © <span id="ano">2026</span> EcoAmparo – Todos os direitos reservados.
   </div>
 </footer>
 

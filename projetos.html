@@ -7,24 +7,28 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <style>
   :root {
-    --verde-escuro: #0c4a2e;
-    --verde-medio: #156e45;
-    --verde-destaque: #9ce62a;
-    --verde-destaque-hover: #86cc1e;
-    --texto-claro: #f4faf6;
-    --texto-escuro: #1e293b;
-    --fundo-pagina: #f3f7f4;
-    --borda: #d6e4db;
-  }
+      --verde-escuro: #0c4a2e;
+      --verde-medio: #156e45;
+      --verde-destaque: #9ce62a;
+      --verde-destaque-hover: #86cc1e;
+      --texto-claro: #f4f8f1;
+      --texto-escuro: #1e293b;
+      --fundo-menu: #0c4a2e;
+      --fundo-claro: #f6f3ea;
+      --laranja: #e8710a;
+      --laranja-claro: #fff1e0;
+      --raio: 14px;
+    }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; }
   body {
     font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     color: var(--texto-escuro);
-    background: var(--fundo-pagina);
+    background: var(--fundo-claro);
     line-height: 1.7;
     font-size: 1.05rem;
   }
@@ -32,8 +36,10 @@
   a { color: inherit; }
   :focus-visible { outline: 3px solid var(--verde-destaque); outline-offset: 3px; }
 
-  .container { width: min(1080px, 92%); margin-inline: auto; }
+  .container { width: min(1240px, 95%); margin-inline: auto; }
   .texto { max-width: 68ch; }
+
+
 
   .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 800; font-size: 1.2rem; }
   .logo img { height: 44px; width: auto; }
@@ -61,40 +67,74 @@
     font-weight: 700;
     cursor: pointer;
   }
-  /* Cabeçalho (logo + menu) */
-  .cabecalho {
-    background: var(--verde-escuro);
+
+  /* ===== Cabeçalho / menu ===== */
+  .topo {
+    background: var(--fundo-menu);
     color: var(--texto-claro);
-    padding: .9rem 0;
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 50;
   }
-  .cabecalho .container {
+  .topo .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+    min-height: 72px;
+  }
+
+  .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 800; font-size: 1.2rem; }
+  .logo img { height: 44px; width: auto; }
+  .logo span { color: var(--verde-destaque); }
+  .menu { display: flex; align-items: center; gap: .25rem; list-style: none; }         
+  .menu a {
+    display: block;
+    white-space: nowrap; /* Impede que o texto quebre em duas linhas */
+    padding: .55rem .95rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: .97rem;
+    transition: background .2s, color .2s;
+    padding: .5rem .75rem;
+    font-size: .9rem;
+  }
+
+  .menu a:hover { background: rgba(255,255,255,.12); }
+  .menu a[aria-current="page"] { background: var(--verde-destaque); color: var(--verde-escuro); }
+  .menu-btn {
+    display: none;
+    background: none;
+    border: 2px solid var(--texto-claro);
+    color: var(--texto-claro);
+    border-radius: 10px;
+    padding: .4rem .7rem;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
   }
 
   /* Topo da página */
-  .topo {
+  .cabecalho {
     background: var(--verde-escuro);
     color: var(--texto-claro);
     padding: 72px 24px 96px;
   }
-  .topo-conteudo { max-width: 960px; margin: 0 auto; }
-  .topo h1 {
+  .cabecalho-conteudo { max-width: 960px; margin: 0 auto; }
+  .cabecalho h1 {
     font-size: clamp(2rem, 5vw, 3.2rem);
     font-weight: 800;
     line-height: 1.12;
     max-width: 18ch;
   }
-  .topo p {
+  .cabecalho p {
     margin-top: 20px;
     max-width: 62ch;
     font-size: 1.08rem;
     opacity: .92;
   }
-  .topo .barra {
+  .cabecalho .barra {
     width: 72px; height: 6px; border-radius: 3px;
     background: var(--verde-destaque);
     margin-top: 28px;
@@ -197,128 +237,132 @@
   @keyframes abrir { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 
   /* ===== FOOTER ===== */
-.rodape {
-    background: var(--verde-escuro);
-    color: var(--texto-claro);
-    padding: 70px 20px 0;
-    border-top: 5px solid var(--verde-destaque);
-}
-
-.rodape__container {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1.2fr;
-    gap: 40px;
-}
-
-.rodape__marca h3 {
-    font-size: 1.6rem;
-    font-weight: 800;
-    margin-bottom: 14px;
-}
-
-.rodape__marca h3 span { color: var(--verde-destaque); }
-
-.rodape__marca p {
-    line-height: 1.7;
-    color: rgba(241, 245, 249, 0.8);
-    max-width: 340px;
-}
-
-.rodape h4 {
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 18px;
-    position: relative;
-    padding-bottom: 10px;
-}
-
-.rodape h4::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 36px;
-    height: 3px;
-    border-radius: 3px;
-    background: var(--verde-destaque);
-}
-
-.rodape ul { list-style: none; }
-.rodape li { margin-bottom: 11px; }
-
-.rodape a {
-    color: rgba(241, 245, 249, 0.85);
-    text-decoration: none;
-    transition: color .25s ease, padding-left .25s ease;
-}
-
-.rodape ul a:hover {
-    color: var(--verde-destaque);
-    padding-left: 6px;
-}
-
-.rodape__contato li {
-    display: flex;
-    gap: 10px;
-    line-height: 1.5;
-    color: rgba(241, 245, 249, 0.85);
-}
-
-.rodape__contato a:hover { color: var(--verde-destaque); }
-
-/* Redes sociais */
-.rodape__redes {
-    display: flex;
-    gap: 12px;
-    margin-top: 22px;
-}
-
-.rodape__redes a {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background .25s ease, transform .25s ease;
-}
-
-.rodape__redes a:hover {
-    background: var(--verde-destaque);
-    transform: translateY(-4px);
-}
-
-.rodape__redes svg {
-    width: 20px;
-    height: 20px;
-    fill: #fff;
-    transition: fill .25s ease;
-}
-
-.rodape__redes a:hover svg { fill: var(--verde-escuro); }
-
-/* Linha de direitos */
-.rodape__copy {
-    max-width: 1100px;
-    margin: 50px auto 0;
-    padding: 22px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    text-align: center;
-    font-size: .9rem;
-    color: rgba(241, 245, 249, 0.7);
-}
-
-
-  @media (max-width: 860px) {
-    .rodape__container { grid-template-columns: 1fr 1fr; }
-    .rodape__marca { grid-column: 1 / -1; }
+  .rodape {
+      background: var(--verde-escuro);
+      color: var(--texto-claro);
+      padding: 70px 20px 0;
+      border-top: 5px solid var(--verde-destaque);
   }
-  @media (max-width: 520px) {
-    .rodape__container { grid-template-columns: 1fr; }
+
+  .rodape__container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1.2fr;
+      gap: 40px;
   }
+
+  .rodape__marca h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+  }
+
+  .rodape__marca h3 span { color: var(--verde-destaque); }
+
+  .rodape__marca p {
+      line-height: 1.7;
+      color: rgba(241, 245, 249, 0.8);
+      max-width: 340px;
+  }
+
+  .rodape h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      position: relative;
+      padding-bottom: 10px;
+  }
+
+  .rodape h4::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 36px;
+      height: 3px;
+      border-radius: 3px;
+      background: var(--verde-destaque);
+  }
+
+  .rodape ul { list-style: none; }
+  .rodape li { margin-bottom: 11px; }
+
+  .rodape a {
+      color: rgba(241, 245, 249, 0.85);
+      text-decoration: none;
+      transition: color .25s ease, padding-left .25s ease;
+  }
+
+  .rodape ul a:hover {
+      color: var(--verde-destaque);
+      padding-left: 6px;
+  }
+
+  .rodape__contato li {
+      display: flex;
+      gap: 10px;
+      line-height: 1.5;
+      color: rgba(241, 245, 249, 0.85);
+  }
+
+  .rodape__contato a:hover { color: var(--verde-destaque); }
+
+  /* Redes sociais */
+  .rodape__redes {
+      display: flex;
+      gap: 12px;
+      margin-top: 22px;
+  }
+
+  .rodape__redes a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .25s ease, transform .25s ease;
+  }
+
+  .rodape__redes a:hover {
+      background: var(--verde-destaque);
+      transform: translateY(-4px);
+  }
+
+  .rodape__redes svg {
+      width: 20px;
+      height: 20px;
+      fill: #fff;
+      transition: fill .25s ease;
+  }
+
+  .rodape__redes a:hover svg { fill: var(--verde-escuro); }
+
+  /* Linha de direitos */
+  .rodape__copy {
+      max-width: 1100px;
+      margin: 50px auto 0;
+      padding: 22px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      text-align: center;
+      font-size: .9rem;
+      color: rgba(241, 245, 249, 0.7);
+  }
+
+  /* ===== Animação de entrada (só na abertura) ===== */
+
+  @keyframes entrar { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  .abertura .container > * { animation: entrar .7s ease both; }
+  .abertura .container > *:nth-child(2) { animation-delay: .12s; }
+  .abertura .container > *:nth-child(3) { animation-delay: .24s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  /* ===== Responsivo ===== */
 
   @media (max-width: 720px) {
     .projetos::before { left: 11px; }
@@ -334,18 +378,6 @@
     summary::after { transition: none; }
   }
 
-  /* ===== Animação de entrada (só na abertura) ===== */
-
-  @keyframes entrar { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-  .abertura .container > * { animation: entrar .7s ease both; }
-  .abertura .container > *:nth-child(2) { animation-delay: .12s; }
-  .abertura .container > *:nth-child(3) { animation-delay: .24s; }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  }
-
-  /* ===== Responsivo ===== */
 
   @media (max-width: 860px) {
     .menu-btn { display: block; }
@@ -377,11 +409,34 @@
     * { transition: none !important; scroll-behavior: auto !important; }
   }
 
+  @media (max-width: 800px) {
+    .rodape { padding-top: 50px; }
+    .rodape__container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 34px;
+    }
+    .rodape__marca p { margin: 0 auto; }
+    .rodape h4::after { left: 50%; transform: translateX(-50%); }
+    .rodape__contato li { justify-content: center; }
+    .rodape__redes { justify-content: center; }
+    .rodape ul a:hover { padding-left: 0; }
+  }
+
+  @media (max-width: 860px) {
+    .rodape__container { grid-template-columns: 1fr 1fr; }
+    .rodape__marca { grid-column: 1 / -1; }
+  }
+  @media (max-width: 520px) {
+    .rodape__container { grid-template-columns: 1fr; }
+  }
+
 </style>
 </head>
 <body>
 
-<header class="cabecalho">
+<!-- ===== Cabeçalho ===== -->
+ <header class="topo">
     <div class="container">
       <a class="logo" href="index.html" aria-label="EcoAmparo – página inicial">
         <img src="img/logo.jpg" alt="Logo Cooperativa EcoAmparo" onerror="this.style.display='none'">
@@ -393,19 +448,21 @@
         <li><a href="quem-somos.html">Quem somos</a></li>
         <li><a href="nossa-historia.html">Nossa história</a></li>
         <li><a href="coleta-seletiva.html">Coleta seletiva</a></li>
-        <li><a href="projetos.html" aria-current="page">Projetos Sociais</a></li>
-        <li><a href="index.html#contato">Contato</a></li>
+        <li><a href="#">Educação Ambiental</a></li>
+        <li><a href="projetos.html" aria-current="page">Projetos</a></li>
+        <li><a href="transparencia.html">Transparência</a></li>
+        <li><a href="contato.html">Contato</a></li>
       </ul>
     </div>
   </header>
 
-<header class="topo">
-  <div class="topo-conteudo">
+<div class="cabecalho">
+  <div class="cabecalho-conteudo">
     <h1>Projetos e Parcerias Realizadas</h1>
     <p>Ao longo dos últimos anos, a Cooperativa de Trabalho Eco Amparo consolidou parcerias estratégicas com o poder público e a iniciativa privada para fortalecer a inclusão social e ampliar a eficiência da coleta seletiva na região.</p>
     <div class="barra"></div>
   </div>
-</header>
+</div>
 
 <main class="projetos">
 
