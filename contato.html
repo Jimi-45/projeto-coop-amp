@@ -62,14 +62,12 @@
     .menu a {
       display: block;
       white-space: nowrap; /* Impede que o texto quebre em duas linhas */
-      padding: .55rem .95rem;
+      padding: .5rem .75rem;
       border-radius: 999px;
       text-decoration: none;
       font-weight: 600;
-      font-size: .97rem;
-      transition: background .2s, color .2s;
-      padding: .5rem .75rem;
       font-size: .9rem;
+      transition: background .2s, color .2s;
     }
 
     .menu a:hover { background: rgba(255,255,255,.12); }
@@ -179,6 +177,8 @@
       border-radius: 10px;
       padding: 1.05rem 1.15rem;
     }
+
+    .contato-item { min-width: 0; overflow-wrap: anywhere; }
 
     .contato-item strong {
       display: block;
@@ -356,6 +356,7 @@
         display: flex;
         gap: 10px;
         line-height: 1.5;
+        overflow-wrap: anywhere;
         color: rgba(241, 245, 249, 0.85);
     }
 
@@ -415,42 +416,96 @@
       * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     }
 
-    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+    /* ===== Botão Voltar ao Topo ===== */
+    .btn-topo {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      width: 46px;
+      height: 46px;
+      border: none;
+      border-radius: 50%;
+      background: var(--verde-destaque);
+      color: var(--verde-escuro);
+      font-size: 1.3rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity .25s, transform .25s, visibility .25s, background-color .2s;
+      z-index: 60;
+    }
+    .btn-topo.visivel { opacity: 1; visibility: visible; transform: none; }
+    .btn-topo:hover { background: var(--verde-destaque-hover); }
 
+    /* ===== Responsividade (do maior para o menor) ===== */
 
-    /* ===== Responsividade ===== */
-    @media (min-width: 768px) {
-      .menu-btn {
+    /* Menu: com 8 itens, vira botão "Menu" antes de estourar a largura */
+    @media (max-width: 1180px) {
+      .menu-btn { display: block; }
+
+      .menu {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: .25rem;
+        background: var(--fundo-menu);
+        padding: .75rem 2.5%;
+        border-top: 1px solid rgba(255, 255, 255, .15);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, .25);
+        max-height: calc(100vh - 72px);
+        overflow-y: auto;
       }
+      .menu.aberto { display: flex; }
 
-      nav ul {
-        display: flex;
-        flex-direction: row;
-        position: static;
-        padding: 0;
-        border: none;
-        box-shadow: none;
-        gap: 1.75rem;
-        width: auto;
+      .menu a {
+        white-space: normal;
+        padding: .85rem 1rem;
+        border-radius: 10px;
+        font-size: 1rem;
       }
+    }
 
-      .card {
-        padding: 2.25rem 2.5rem;
-      }
+    /* Tablet e acima */
+    @media (min-width: 768px) {
+      .hero { padding: 3rem 1.5rem 5.5rem; }
+
+      .card { padding: 2.25rem 2.5rem; }
 
       .contato-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
       }
     }
-    
-    @media (max-width: 800px) {
+
+    /* Rodapé em 2 colunas (marca ocupa a linha toda) */
+    @media (max-width: 860px) {
+      .rodape__container { grid-template-columns: 1fr 1fr; }
+      .rodape__marca { grid-column: 1 / -1; }
+    }
+
+    /* Celular */
+    @media (max-width: 767px) {
+      /* 16px nos campos evita o zoom automático do iOS ao focar */
+      .form-grupo input,
+      .form-grupo select,
+      .form-grupo textarea { font-size: 1rem; }
+
+      .btn-enviar { width: 100%; }
+    }
+
+    @media (max-width: 600px) {
       .rodape { padding-top: 50px; }
       .rodape__container {
-      grid-template-columns: 1fr;
-      text-align: center;
-      gap: 34px;
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 34px;
       }
       .rodape__marca p { margin: 0 auto; }
       .rodape h4::after { left: 50%; transform: translateX(-50%); }
@@ -459,12 +514,12 @@
       .rodape ul a:hover { padding-left: 0; }
     }
 
-    @media (max-width: 860px) {
-      .rodape__container { grid-template-columns: 1fr 1fr; }
-      .rodape__marca { grid-column: 1 / -1; }
-    }
-    @media (max-width: 520px) {
-      .rodape__container { grid-template-columns: 1fr; }
+    @media (max-width: 400px) {
+      body { font-size: 1rem; }
+      .logo { font-size: 1.05rem; }
+      .logo img { height: 36px; }
+      .card { padding: 1.35rem 1rem; }
+      .card h2 { font-size: 1.2rem; }
     }
 
   </style>
@@ -665,21 +720,21 @@
   <!-- JavaScript -->
   <script>
     // Controle do Menu Mobile
-    const btnMenu = document.getElementById('btnMenu');
-    const menuLista = document.getElementById('menuLista');
-
-    btnMenu.addEventListener('click', () => {
-      const aberto = menuLista.classList.toggle('aberto');
-      btnMenu.setAttribute('aria-expanded', aberto);
-      btnMenu.textContent = aberto ? 'Fechar' : 'Menu';
+    const abas = document.querySelectorAll('.aba');
+    const paineis = document.querySelectorAll('.painel');
+    abas.forEach(aba => {
+      aba.addEventListener('click', () => {
+        abas.forEach(a => a.setAttribute('aria-selected', a === aba));
+        paineis.forEach(p => p.classList.toggle('ativo', p.id === aba.dataset.alvo));
+      });
     });
 
-    document.querySelectorAll('#menuLista a').forEach(link => {
-      link.addEventListener('click', () => {
-        menuLista.classList.remove('aberto');
-        btnMenu.setAttribute('aria-expanded', 'false');
-        btnMenu.textContent = 'Menu';
-      });
+    // Menu no celular
+    const menuBtn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
+    menuBtn.addEventListener('click', () => {
+      const aberto = menu.classList.toggle('aberto');
+      menuBtn.setAttribute('aria-expanded', aberto);
     });
 
     // Validação e feedback visual do formulário
