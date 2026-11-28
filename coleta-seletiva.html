@@ -333,119 +333,149 @@
   .final h2 { color: #fff; font-size: clamp(1.7rem, 4vw, 2.6rem); margin-bottom: .8rem; }
   .final p { max-width: 52ch; margin: 0 auto 1.6rem; }
 
+  /* ===== Botão Voltar ao Topo ===== */
+  .btn-topo {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    background-color: var(--verde-destaque);
+    color: var(--verde-escuro);
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, transform 0.2s;
+    z-index: 999;
+  }
+
+  .btn-topo:hover {
+    background-color: var(--verde-destaque-hover);
+    transform: translateY(-2px);
+  }
+
   /* ===== FOOTER ===== */
   .rodape {
-      background: var(--verde-escuro);
-      color: var(--texto-claro);
-      padding: 70px 20px 0;
-      border-top: 5px solid var(--verde-destaque);
+    background: var(--verde-escuro);
+    color: var(--texto-claro);
+    padding: 70px 20px 0;
+    border-top: 5px solid var(--verde-destaque);
   }
 
   .rodape__container {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1.2fr;
-      gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.2fr;
+    gap: 40px;
   }
 
-  .rodape__marca h3 {
-      font-size: 1.6rem;
-      font-weight: 800;
-      margin-bottom: 14px;
+  .rodape__marca img {
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    display: block;
+    padding: 8px 12px;
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 16px;
   }
-
-  .rodape__marca h3 span { color: var(--verde-destaque); }
 
   .rodape__marca p {
-      line-height: 1.7;
-      color: rgba(241, 245, 249, 0.8);
-      max-width: 340px;
+    line-height: 1.7;
+    color: rgba(241, 245, 249, 0.8);
+    max-width: 340px;
   }
 
   .rodape h4 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 18px;
-      position: relative;
-      padding-bottom: 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    position: relative;
+    padding-bottom: 10px;
   }
 
   .rodape h4::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 36px;
-      height: 3px;
-      border-radius: 3px;
-      background: var(--verde-destaque);
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 36px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--verde-destaque);
   }
 
   .rodape ul { list-style: none; }
   .rodape li { margin-bottom: 11px; }
 
   .rodape a {
-      color: rgba(241, 245, 249, 0.85);
-      text-decoration: none;
-      transition: color .25s ease, padding-left .25s ease;
+    color: rgba(241, 245, 249, 0.85);
+    text-decoration: none;
+    transition: color .25s ease, padding-left .25s ease;
   }
 
   .rodape ul a:hover {
-      color: var(--verde-destaque);
-      padding-left: 6px;
+    color: var(--verde-destaque);
+    padding-left: 6px;
   }
 
   .rodape__contato li {
-      display: flex;
-      gap: 10px;
-      line-height: 1.5;
-      color: rgba(241, 245, 249, 0.85);
+    display: flex;
+    gap: 10px;
+    line-height: 1.5;
+    color: rgba(241, 245, 249, 0.85);
   }
 
   .rodape__contato a:hover { color: var(--verde-destaque); }
 
   /* Redes sociais */
   .rodape__redes {
-      display: flex;
-      gap: 12px;
-      margin-top: 22px;
+    display: flex;
+    gap: 12px;
+    margin-top: 22px;
   }
 
   .rodape__redes a {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background .25s ease, transform .25s ease;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .25s ease, transform .25s ease;
   }
 
   .rodape__redes a:hover {
-      background: var(--verde-destaque);
-      transform: translateY(-4px);
+    background: var(--verde-destaque);
+    transform: translateY(-4px);
   }
 
   .rodape__redes svg {
-      width: 20px;
-      height: 20px;
-      fill: #fff;
-      transition: fill .25s ease;
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    transition: fill .25s ease;
   }
 
   .rodape__redes a:hover svg { fill: var(--verde-escuro); }
 
   /* Linha de direitos */
   .rodape__copy {
-      max-width: 1100px;
-      margin: 50px auto 0;
-      padding: 22px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      text-align: center;
-      font-size: .9rem;
-      color: rgba(241, 245, 249, 0.7);
+    max-width: 1100px;
+    margin: 50px auto 0;
+    padding: 22px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    font-size: .9rem;
+    color: rgba(241, 245, 249, 0.7);
   }
   
   /* ===== Lightbox ===== */
@@ -725,19 +755,19 @@
     <div class="container">
       <h2>Faça a sua parte!</h2>
       <p>Separe seus resíduos e ajude a Cooperativa EcoAmparo a construir uma cidade mais limpa e sustentável.</p>
-      <a class="btn" href="#reciclavel">Voltar ao início do guia</a>
     </div>
   </section>
-
 </main>
 
-<!-- ===== FOOTER ===== -->
+<!-- Botão flutuante para voltar ao topo -->
+<button class="btn-topo" id="btnTopo" aria-label="Voltar ao topo">↑</button>
 
+<!-- ===== FOOTER ===== -->
 <footer class="rodape" id="contato">
   <div class="rodape__container">
 
   <div class="rodape__marca">
-      <h3>Eco<span>Amparo</span></h3>
+      <img src="img/logo-ecoamparo.png" alt="Logo Cooperativa EcoAmparo" onerror="this.style.display='none'">
       <p>
       Cooperativa de reciclados trabalhando pela conscientização da comunidade
       e por um futuro mais verde e saudável em Amparo e região.
@@ -826,6 +856,20 @@
   document.getElementById('fecharLightbox').addEventListener('click', fechar);
   lightbox.addEventListener('click', e => { if (e.target === lightbox) fechar(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') fechar(); });
+
+  // Mostra o botão de voltar ao topo ao rolar a página
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      btnTopo.style.display = 'flex';
+    } else {
+      btnTopo.style.display = 'none';
+    }
+  });
+
+  btnTopo.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
 </script>
 </body>
 </html>

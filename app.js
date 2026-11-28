@@ -209,3 +209,26 @@ cards.forEach(card => observador.observe(card));
 
 // Atualiza o ano automaticamente
     document.getElementById('ano').textContent = new Date().getFullYear();
+
+// Gravuras: se a imagem carregar, esconde o espaço reservado; se não, mantém o aviso
+document.querySelectorAll('.gravura img').forEach(img => {
+const figura = img.closest('.gravura');
+const mostrar = () => figura.classList.add('tem-imagem');
+const esconder = () => { img.style.display = 'none'; };
+if (img.complete && img.naturalWidth > 0) mostrar();
+img.addEventListener('load', mostrar);
+img.addEventListener('error', esconder);
+});
+
+// Mostra o botão de voltar ao topo ao rolar a página
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+    btnTopo.style.display = 'flex';
+    } else {
+    btnTopo.style.display = 'none';
+    }
+});
+
+btnTopo.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});

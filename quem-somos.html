@@ -57,9 +57,21 @@
       min-height: 72px;
     }
 
-    .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 800; font-size: 1.2rem; }
-    .logo img { height: 44px; width: auto; }
-    .logo span { color: var(--verde-destaque); }
+    .logo { align-items: center; gap: .6rem; text-decoration: none; }
+    .logo {
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo img {
+      height: 65px;
+      display: block;
+    }
+    
     .menu { display: flex; align-items: center; gap: .25rem; list-style: none; }         
     .menu a {
       display: block;
@@ -177,19 +189,32 @@
     .impacto h2 { color: var(--verde-destaque); }
     .impacto strong { color: var(--verde-destaque); }
 
-    /* ===== Botão de voltar ===== */
-    .acao { margin-top: 40px; text-align: center; }
-    .botao {
-      display: inline-block;
-      background: var(--verde-destaque);
+    /* ===== Botão Voltar ao Topo ===== */
+    .btn-topo {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      background-color: var(--verde-destaque);
       color: var(--verde-escuro);
-      font-weight: 700;
-      text-decoration: none;
-      padding: 14px 32px;
-      border-radius: 999px;
-      transition: background .2s, transform .2s;
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-weight: 800;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s, transform 0.2s;
+      z-index: 999;
     }
-    .botao:hover { background: var(--verde-destaque-hover); transform: translateY(-2px); }
+
+    .btn-topo:hover {
+      background-color: var(--verde-destaque-hover);
+      transform: translateY(-2px);
+    }
 
     /* ===== FOOTER ===== */
     .rodape {
@@ -207,13 +232,16 @@
         gap: 40px;
     }
 
-    .rodape__marca h3 {
-        font-size: 1.6rem;
-        font-weight: 800;
-        margin-bottom: 14px;
+    .rodape__marca img {
+        width: 100%;
+        max-width: 240px;
+        height: auto;
+        display: block;
+        padding: 8px 12px;
+        background: #fff;
+        border-radius: 8px;
+        margin-bottom: 16px;
     }
-
-    .rodape__marca h3 span { color: var(--verde-destaque); }
 
     .rodape__marca p {
         line-height: 1.7;
@@ -265,45 +293,45 @@
 
     /* Redes sociais */
     .rodape__redes {
-        display: flex;
-        gap: 12px;
-        margin-top: 22px;
+      display: flex;
+      gap: 12px;
+      margin-top: 22px;
     }
 
     .rodape__redes a {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background .25s ease, transform .25s ease;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .25s ease, transform .25s ease;
     }
 
     .rodape__redes a:hover {
-        background: var(--verde-destaque);
-        transform: translateY(-4px);
+      background: var(--verde-destaque);
+      transform: translateY(-4px);
     }
 
     .rodape__redes svg {
-        width: 20px;
-        height: 20px;
-        fill: #fff;
-        transition: fill .25s ease;
+      width: 20px;
+      height: 20px;
+      fill: #fff;
+      transition: fill .25s ease;
     }
 
     .rodape__redes a:hover svg { fill: var(--verde-escuro); }
 
     /* Linha de direitos */
     .rodape__copy {
-        max-width: 1100px;
-        margin: 50px auto 0;
-        padding: 22px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.15);
-        text-align: center;
-        font-size: .9rem;
-        color: rgba(241, 245, 249, 0.7);
+      max-width: 1100px;
+      margin: 50px auto 0;
+      padding: 22px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      text-align: center;
+      font-size: .9rem;
+      color: rgba(241, 245, 249, 0.7);
     }
 
     /* ===== Animação de entrada (só na abertura) ===== */
@@ -378,8 +406,7 @@
   <header class="topo">
     <div class="container">
       <a class="logo" href="index.html" aria-label="EcoAmparo – página inicial">
-        <img src="img/logo.jpg" alt="Logo Cooperativa EcoAmparo" onerror="this.style.display='none'">
-        <div>Eco<span>Amparo</span></div>
+        <img src="img/logo-ecoamparo.png" alt="Logo Cooperativa EcoAmparo" onerror="this.style.display='none'">
       </a>
       <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
       <ul class="menu" id="menu">
@@ -439,20 +466,17 @@
         <strong>Cada resíduo separado pela população e entregue à cooperativa representa dignidade.</strong> Por meio da organização coletiva, catadores e trabalhadores antes vulneráveis conquistam profissionalização, um ambiente de trabalho seguro e o sustento de suas famílias.
       </p>
     </section>
-
-    <div class="acao">
-      <a class="botao" href="#quem">Voltar ao início do guia</a>
-    </div>
-
   </main>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- Botão flutuante para voltar ao topo -->
+  <button class="btn-topo" id="btnTopo" aria-label="Voltar ao topo">↑</button>
 
+  <!-- ===== FOOTER ===== -->
   <footer class="rodape" id="contato">
     <div class="rodape__container">
 
     <div class="rodape__marca">
-        <h3>Eco<span>Amparo</span></h3>
+        <img src="img/logo-ecoamparo.png" alt="Logo Cooperativa EcoAmparo" onerror="this.style.display='none'">
         <p>
         Cooperativa de reciclados trabalhando pela conscientização da comunidade
         e por um futuro mais verde e saudável em Amparo e região.
@@ -500,8 +524,8 @@
     </div>
   </footer>
 
+  <!-- JavaScript para interatividade mobile -->
   <script>
-    // Menu no celular
     const menuBtn = document.getElementById('menuBtn');
     const menu = document.getElementById('menu');
     menuBtn.addEventListener('click', () => {
@@ -518,7 +542,19 @@
     img.addEventListener('load', mostrar);
     img.addEventListener('error', esconder);
     });
-    
+
+    // Mostra o botão de voltar ao topo ao rolar a página
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        btnTopo.style.display = 'flex';
+      } else {
+        btnTopo.style.display = 'none';
+      }
+    });
+
+    btnTopo.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 
 </body>

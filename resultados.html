@@ -114,6 +114,33 @@
   .lightbox button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
   @keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
 
+  /* ===== Botão Voltar ao Topo ===== */
+  .btn-topo {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    background-color: var(--verde-destaque);
+    color: var(--verde-escuro);
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, transform 0.2s;
+    z-index: 999;
+  }
+
+  .btn-topo:hover {
+    background-color: var(--verde-destaque-hover);
+    transform: translateY(-2px);
+  }
+
   /* ===== FOOTER ===== */
   .rodape {
       background: var(--verde-escuro);
@@ -130,14 +157,16 @@
       gap: 40px;
   }
 
-  .rodape__marca h3 {
-      font-size: 1.6rem;
-      font-weight: 800;
-      margin-bottom: 14px;
+  .rodape__marca img {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      display: block;
+      padding: 8px 12px;
+      background: #fff;
+      border-radius: 8px;
+      margin-bottom: 16px;
   }
-
-  .rodape__marca h3 span { color: var(--verde-destaque); }
-
   .rodape__marca p {
       line-height: 1.7;
       color: rgba(241, 245, 249, 0.8);
@@ -318,13 +347,15 @@
 
 </main>
 
-<!-- ===== FOOTER ===== -->
+<!-- Botão flutuante para voltar ao topo -->
+<button class="btn-topo" id="btnTopo" aria-label="Voltar ao topo">↑</button>
 
+<!-- ===== FOOTER ===== -->
 <footer class="rodape" id="contato">
   <div class="rodape__container">
 
   <div class="rodape__marca">
-      <h3>Eco<span>Amparo</span></h3>
+      <img src="img/logo-ecoamparo.png" alt="Logo Cooperativa EcoAmparo" onerror="this.style.display='none'">
       <p>
       Cooperativa de reciclados trabalhando pela conscientização da comunidade
       e por um futuro mais verde e saudável em Amparo e região.
@@ -397,6 +428,20 @@
   fechar.addEventListener('click', fecharLightbox);
   lightbox.addEventListener('click', e => { if (e.target === lightbox) fecharLightbox(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharLightbox(); });
+
+  // Mostra o botão de voltar ao topo ao rolar a página
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      btnTopo.style.display = 'flex';
+    } else {
+      btnTopo.style.display = 'none';
+    }
+  });
+
+  btnTopo.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
 </script>
 </body>
 </html>
